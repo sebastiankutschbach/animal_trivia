@@ -256,6 +256,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  http_mock_adapter:
+    dependency: "direct dev"
+    description:
+      name: http_mock_adapter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   http_multi_server:
     dependency: transitive
     description:
@@ -333,6 +340,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  mocktail:
+    dependency: "direct dev"
+    description:
+      name: mocktail
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1-dev.12"
   package_config:
     dependency: transitive
     description:

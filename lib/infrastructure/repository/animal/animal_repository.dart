@@ -7,15 +7,20 @@ import 'package:animal_trivia/infrastructure/repository/animal/i_animal_reposito
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+const String getRandomAnimalPath =
+    "https://zoo-animal-api.herokuapp.com/animals/rand";
+
 class AnimalRepository implements IAnimalRepository {
+  final Dio client;
+
+  AnimalRepository({required this.client});
+
   @override
   Future<Either<IFailure, Animal>> getRandonAnimal() async {
-    final response =
-        await Dio().get('https://zoo-animal-api.herokuapp.com/animals/rand');
-
-    if (response.statusCode == 200) {
+    try {
+      final response = await client.get(getRandomAnimalPath);
       return right(Animal.fromJson(response.data));
-    } else {
+    } catch (e) {
       return left(Failure());
     }
   }
