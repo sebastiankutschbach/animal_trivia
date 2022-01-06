@@ -1,4 +1,5 @@
-import 'package:animal_trivia/domain/animal.dart';
+import 'package:animal_trivia/domain/i_animal.dart';
+import 'package:animal_trivia/infrastructure/repository/animal/animal.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
