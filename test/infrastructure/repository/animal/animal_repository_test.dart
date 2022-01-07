@@ -10,7 +10,7 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'animal_dto_test.dart';
 
 main() {
-  group('get randon animal', () {
+  group('get random animal', () {
     test('fetches random animal without error', () async {
       final dio = Dio();
       final dioAdapter = DioAdapter(dio: dio);

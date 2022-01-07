@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:animal_trivia/infrastructure/translation/translate_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';

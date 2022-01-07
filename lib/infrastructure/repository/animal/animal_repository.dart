@@ -19,8 +19,7 @@ class AnimalRepository implements IAnimalRepository {
   Future<Either<Failure, Animal>> getRandonAnimal() async {
     try {
       final response = await client.get(getRandomAnimalPath);
-      return right(
-          await AnimalDto.fromJson(response.data).toDomainTranslated());
+      return right(AnimalDto.fromJson(response.data).toDomain());
     } on DioError catch (e) {
       return left(
         Failure(message: e.message),

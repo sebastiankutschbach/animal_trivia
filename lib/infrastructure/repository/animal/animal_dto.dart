@@ -1,6 +1,4 @@
 import 'package:animal_trivia/domain/animal.dart';
-import 'package:animal_trivia/infrastructure/translation/translate_service.dart';
-import 'package:animal_trivia/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'animal_dto.g.dart';
@@ -65,33 +63,4 @@ class AnimalDto {
       lifespan: lifespan,
       imageLink: imageLink,
       id: id);
-
-  Future<Animal> toDomainTranslated() async {
-    final translateService = getIt<TranslateService>();
-    return Animal(
-        name: (await translateService.translate(name, from: 'en', to: 'de'))
-            .getOrElse(() => name),
-        latinName: latinName,
-        aninmalType: (await translateService.translate(aninmalType,
-                from: 'en', to: 'de'))
-            .getOrElse(() => aninmalType),
-        activeTime:
-            (await translateService.translate(activeTime, from: 'en', to: 'de'))
-                .getOrElse(() => activeTime),
-        habitat:
-            (await translateService.translate(habitat, from: 'en', to: 'de'))
-                .getOrElse(() => habitat),
-        diet: (await translateService.translate(diet, from: 'en', to: 'de'))
-            .getOrElse(() => diet),
-        geoRange:
-            (await translateService.translate(geoRange, from: 'en', to: 'de'))
-                .getOrElse(() => geoRange),
-        lengthMin: lengthMin,
-        lengthMax: lengthMax,
-        weightMin: weightMin,
-        weightMax: weightMax,
-        lifespan: lifespan,
-        imageLink: imageLink,
-        id: id);
-  }
 }

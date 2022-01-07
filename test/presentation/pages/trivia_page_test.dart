@@ -3,6 +3,7 @@ import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/i_animal_repository.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
+import 'package:animal_trivia/infrastructure/translation/translate_service.dart';
 import 'package:animal_trivia/injection.dart';
 import 'package:animal_trivia/presentation/pages/trivia_page.dart';
 import 'package:dartz/dartz.dart';
@@ -17,17 +18,26 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../infrastructure/repository/animal/animal_dto_test.dart';
 import 'trivia_page_test.mocks.dart';
 
-@GenerateMocks([IAnimalRepository])
+@GenerateMocks([IAnimalRepository, TranslateService])
 main() {
   final Animal defaultAnimal =
       AnimalDto.fromJson(sampleAnimalResponse).toDomain();
 
   Widget _createApp({Failure? failure, Animal? animal}) {
     final animalRepository = MockIAnimalRepository();
+    final mockTranslateService = MockTranslateService();
 
     when(animalRepository.getRandonAnimal()).thenAnswer(
         (_) async => animal != null ? right(animal) : left(failure!));
-    final animalBloc = AnimalBloc(animalRepository);
+    when(mockTranslateService.translate(any,
+            from: anyNamed('from'), to: anyNamed('to')))
+        .thenAnswer(
+            (invocation) async => right(invocation.positionalArguments.first));
+
+    final animalBloc = AnimalBloc(
+      animalRepository,
+      mockTranslateService,
+    );
     getIt.allowReassignment = true;
     getIt.registerSingleton(animalBloc);
 

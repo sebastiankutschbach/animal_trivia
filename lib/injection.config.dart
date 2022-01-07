@@ -25,8 +25,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i4.IAnimalRepository>(
       () => _i5.AnimalRepository(client: get<_i3.Dio>()));
   gh.factory<_i6.TranslateService>(() => _i6.TranslateService(get<_i3.Dio>()));
-  gh.factory<_i7.AnimalBloc>(
-      () => _i7.AnimalBloc(get<_i4.IAnimalRepository>()));
+  gh.factory<_i7.AnimalBloc>(() => _i7.AnimalBloc(
+      get<_i4.IAnimalRepository>(), get<_i6.TranslateService>()));
   return get;
 }
 
