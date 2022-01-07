@@ -4,10 +4,12 @@ import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
 import 'package:animal_trivia/domain/i_animal_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 const String getRandomAnimalPath =
     "https://zoo-animal-api.herokuapp.com/animals/rand";
 
+@Injectable(as: IAnimalRepository)
 class AnimalRepository implements IAnimalRepository {
   final Dio client;
 

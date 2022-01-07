@@ -1,8 +1,7 @@
 import 'package:animal_trivia/application/animal/animal_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
-import 'package:animal_trivia/infrastructure/repository/animal/animal_repository.dart';
-import 'package:dio/dio.dart';
+import 'package:animal_trivia/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,11 +11,8 @@ class TriviaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AnimalBloc>(
-      create: (context) => AnimalBloc(
-        AnimalRepository(
-          client: Dio(),
-        ),
-      )..add(
+      create: (context) => getIt<AnimalBloc>()
+        ..add(
           const AnimalEvent.randomAnimalRequested(),
         ),
       child: BlocConsumer<AnimalBloc, AnimalState>(
@@ -44,9 +40,18 @@ class TriviaPage extends StatelessWidget {
       );
 
   Widget _errorState(Failure failure) => Center(
-        child:
-            Text('Error while retrieving a random animal: ${failure.message}'),
-      );
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.error,
+            size: 40,
+            color: Colors.red,
+          ),
+          Text('Error while retrieving a random animal: ${failure.message}'),
+        ],
+      ));
 
   Widget _successState(Animal animal) => Center(
         child: Column(
