@@ -11,7 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
   cupertino_icons: ^1.0.4
   freezed_annotation: ^1.1.0
   dartz: ^0.10.1
@@ -20,6 +22,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   get_it: ^7.2.0
   injectable: ^1.5.0
+  auto_localization: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -35,4 +38,6 @@ dev_dependencies:
   network_image_mock: ^2.0.1
 
 flutter:
+  generate: true
   uses-material-design: true
+  

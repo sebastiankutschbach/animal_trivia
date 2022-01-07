@@ -1,0 +1,6 @@
+{
+    "appTitle": "Animal Trivia",
+    "loading": "Loading",
+    "error": "Error",
+    "errorLoadingAnimal": "Error while retrieving a random animal:"
+}

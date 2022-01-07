@@ -12,6 +12,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../../infrastructure/repository/animal/animal_dto_test.dart';
 import 'trivia_page_test.mocks.dart';
 
@@ -30,6 +32,8 @@ main() {
     getIt.registerSingleton(animalBloc);
 
     return const MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: TriviaPage(),
     );
   }
