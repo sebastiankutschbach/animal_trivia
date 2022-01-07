@@ -28,8 +28,10 @@ class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
                 ),
               ),
               (r) async {
-                final translatedAnimal =
-                    await r.translated(translateService, from: 'en', to: 'de');
+                final translatedAnimal = await r.translatedAndConverted(
+                    translateService,
+                    from: 'en',
+                    to: 'de');
                 emit(
                   state.copyWith(
                     animal: some(
@@ -45,7 +47,7 @@ class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
 }
 
 extension Translation on Animal {
-  Future<Animal> translated(TranslateService translateService,
+  Future<Animal> translatedAndConverted(TranslateService translateService,
       {required String from, required String to}) async {
     return copyWith(
       name: await getTranslationOrFallback(translateService, name,
@@ -58,6 +60,10 @@ extension Translation on Animal {
           from: from, to: to),
       geoRange: await getTranslationOrFallback(translateService, geoRange,
           from: from, to: to),
+      weightMin: weightMin * 0.45359237,
+      weightMax: weightMin * 0.45359237,
+      lengthMin: lengthMin * 30.48,
+      lengthMax: lengthMax * 30.48,
     );
   }
 

@@ -14,11 +14,11 @@ class Animal with _$Animal {
       required String habitat,
       required String diet,
       required String geoRange,
-      required String lengthMin,
-      required String lengthMax,
-      required String weightMin,
-      required String weightMax,
-      required String lifespan,
+      required double lengthMin,
+      required double lengthMax,
+      required double weightMin,
+      required double weightMax,
+      required double lifespan,
       required int id,
       required Uri imageLink}) = _Animal;
 }

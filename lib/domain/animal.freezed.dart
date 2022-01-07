@@ -25,11 +25,11 @@ class _$AnimalTearOff {
       required String habitat,
       required String diet,
       required String geoRange,
-      required String lengthMin,
-      required String lengthMax,
-      required String weightMin,
-      required String weightMax,
-      required String lifespan,
+      required double lengthMin,
+      required double lengthMax,
+      required double weightMin,
+      required double weightMax,
+      required double lifespan,
       required int id,
       required Uri imageLink}) {
     return _Animal(
@@ -63,11 +63,11 @@ mixin _$Animal {
   String get habitat => throw _privateConstructorUsedError;
   String get diet => throw _privateConstructorUsedError;
   String get geoRange => throw _privateConstructorUsedError;
-  String get lengthMin => throw _privateConstructorUsedError;
-  String get lengthMax => throw _privateConstructorUsedError;
-  String get weightMin => throw _privateConstructorUsedError;
-  String get weightMax => throw _privateConstructorUsedError;
-  String get lifespan => throw _privateConstructorUsedError;
+  double get lengthMin => throw _privateConstructorUsedError;
+  double get lengthMax => throw _privateConstructorUsedError;
+  double get weightMin => throw _privateConstructorUsedError;
+  double get weightMax => throw _privateConstructorUsedError;
+  double get lifespan => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   Uri get imageLink => throw _privateConstructorUsedError;
 
@@ -87,11 +87,11 @@ abstract class $AnimalCopyWith<$Res> {
       String habitat,
       String diet,
       String geoRange,
-      String lengthMin,
-      String lengthMax,
-      String weightMin,
-      String weightMax,
-      String lifespan,
+      double lengthMin,
+      double lengthMax,
+      double weightMin,
+      double weightMax,
+      double lifespan,
       int id,
       Uri imageLink});
 }
@@ -153,23 +153,23 @@ class _$AnimalCopyWithImpl<$Res> implements $AnimalCopyWith<$Res> {
       lengthMin: lengthMin == freezed
           ? _value.lengthMin
           : lengthMin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       lengthMax: lengthMax == freezed
           ? _value.lengthMax
           : lengthMax // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       weightMin: weightMin == freezed
           ? _value.weightMin
           : weightMin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       weightMax: weightMax == freezed
           ? _value.weightMax
           : weightMax // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       lifespan: lifespan == freezed
           ? _value.lifespan
           : lifespan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -195,11 +195,11 @@ abstract class _$AnimalCopyWith<$Res> implements $AnimalCopyWith<$Res> {
       String habitat,
       String diet,
       String geoRange,
-      String lengthMin,
-      String lengthMax,
-      String weightMin,
-      String weightMax,
-      String lifespan,
+      double lengthMin,
+      double lengthMax,
+      double weightMin,
+      double weightMax,
+      double lifespan,
       int id,
       Uri imageLink});
 }
@@ -262,23 +262,23 @@ class __$AnimalCopyWithImpl<$Res> extends _$AnimalCopyWithImpl<$Res>
       lengthMin: lengthMin == freezed
           ? _value.lengthMin
           : lengthMin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       lengthMax: lengthMax == freezed
           ? _value.lengthMax
           : lengthMax // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       weightMin: weightMin == freezed
           ? _value.weightMin
           : weightMin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       weightMax: weightMax == freezed
           ? _value.weightMax
           : weightMax // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       lifespan: lifespan == freezed
           ? _value.lifespan
           : lifespan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -326,15 +326,15 @@ class _$_Animal extends _Animal {
   @override
   final String geoRange;
   @override
-  final String lengthMin;
+  final double lengthMin;
   @override
-  final String lengthMax;
+  final double lengthMax;
   @override
-  final String weightMin;
+  final double weightMin;
   @override
-  final String weightMax;
+  final double weightMax;
   @override
-  final String lifespan;
+  final double lifespan;
   @override
   final int id;
   @override
@@ -401,11 +401,11 @@ abstract class _Animal extends Animal {
       required String habitat,
       required String diet,
       required String geoRange,
-      required String lengthMin,
-      required String lengthMax,
-      required String weightMin,
-      required String weightMax,
-      required String lifespan,
+      required double lengthMin,
+      required double lengthMax,
+      required double weightMin,
+      required double weightMax,
+      required double lifespan,
       required int id,
       required Uri imageLink}) = _$_Animal;
   _Animal._() : super._();
@@ -425,15 +425,15 @@ abstract class _Animal extends Animal {
   @override
   String get geoRange;
   @override
-  String get lengthMin;
+  double get lengthMin;
   @override
-  String get lengthMax;
+  double get lengthMax;
   @override
-  String get weightMin;
+  double get weightMin;
   @override
-  String get weightMax;
+  double get weightMax;
   @override
-  String get lifespan;
+  double get lifespan;
   @override
   int get id;
   @override

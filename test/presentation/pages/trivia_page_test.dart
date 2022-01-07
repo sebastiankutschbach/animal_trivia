@@ -122,5 +122,18 @@ main() {
         expect(imageFinder, findsOneWidget);
       });
     });
+
+    testWidgets('shows latin name of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.text(defaultAnimal.latinName), findsOneWidget);
+      });
+    });
   });
 }

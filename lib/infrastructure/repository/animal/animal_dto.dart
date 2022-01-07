@@ -56,11 +56,11 @@ class AnimalDto {
       habitat: habitat,
       diet: diet,
       geoRange: geoRange,
-      lengthMin: lengthMin,
-      lengthMax: lengthMax,
-      weightMin: weightMin,
-      weightMax: weightMax,
-      lifespan: lifespan,
+      lengthMin: double.parse(lengthMin),
+      lengthMax: double.parse(lengthMax),
+      weightMin: double.parse(weightMin),
+      weightMax: double.parse(weightMax),
+      lifespan: double.parse(lifespan),
       imageLink: imageLink,
       id: id);
 }

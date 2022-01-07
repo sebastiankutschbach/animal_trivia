@@ -73,6 +73,17 @@ class TriviaPage extends StatelessWidget {
           Image.network(
             animal.imageLink.toString(),
           ),
+          Text('Latin name: ${animal.latinName}'),
+          Text('Type: ${animal.aninmalType}'),
+          Text('Active time: ${animal.activeTime}'),
+          Text('Habitat: ${animal.habitat}'),
+          Text('Diet: ${animal.diet}'),
+          Text('Geo Range: ${animal.geoRange}'),
+          Text('Min Length: ${animal.lengthMin} cm'),
+          Text('Max Length: ${animal.lengthMax} cm'),
+          Text('Min Weight: ${animal.weightMin} kg'),
+          Text('Max Weight: ${animal.weightMax} kg'),
+          Text('Lifespan: ${animal.lifespan} years'),
         ],
       );
 }
