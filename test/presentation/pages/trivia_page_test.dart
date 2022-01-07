@@ -2,10 +2,10 @@ import 'package:animal_trivia/application/animal/animal_bloc.dart';
 import 'package:animal_trivia/domain/i_animal_repository.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
+import 'package:animal_trivia/injection.dart';
 import 'package:animal_trivia/presentation/pages/trivia_page.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -15,12 +15,14 @@ import 'trivia_page_test.mocks.dart';
 
 @GenerateMocks([IAnimalRepository])
 main() {
-  Widget createApp(IAnimalRepository animalRepository) => BlocProvider(
-        create: (context) => AnimalBloc(animalRepository),
-        child: const MaterialApp(
-          home: TriviaPage(),
-        ),
-      );
+  Widget createApp(IAnimalRepository animalRepository) {
+    final animalBloc = AnimalBloc(animalRepository);
+    getIt.registerSingleton(animalBloc);
+
+    return const MaterialApp(
+      home: TriviaPage(),
+    );
+  }
 
   group('loading state', () {
     testWidgets('shows loading state while loading random animal',
@@ -51,7 +53,7 @@ main() {
       final animalRepository = MockIAnimalRepository();
       when(animalRepository.getRandonAnimal()).thenAnswer(
         (_) async => left(
-          Failure(message: 'error'),
+          Failure(message: 'Error'),
         ),
       );
       await tester.pumpWidget(
@@ -60,7 +62,7 @@ main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text('Error'), findsOneWidget);
+      expect(find.byIcon(Icons.error), findsOneWidget);
     });
   });
 
