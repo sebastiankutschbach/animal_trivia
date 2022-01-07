@@ -1,5 +1,5 @@
 import 'package:animal_trivia/domain/i_failure.dart';
-import 'package:animal_trivia/infrastructure/repository/animal/animal.dart';
+import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_repository.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/i_animal_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
-import 'animal_test.dart';
+import 'animal_dto_test.dart';
 
 main() {
   group('get randon animal', () {
@@ -20,12 +20,12 @@ main() {
           (server) => server.reply(200, sampleAnimalResponse));
 
       final IAnimalRepository animalRepository = AnimalRepository(client: dio);
-      final Either<IFailure, Animal> response =
+      final Either<IFailure, AnimalDto> response =
           await animalRepository.getRandonAnimal();
 
       expect(response.isLeft(), false);
       expect(response.isRight(), true);
-      expect(response.fold((l) => null, (r) => r), isA<Animal>());
+      expect(response.fold((l) => null, (r) => r), isA<AnimalDto>());
     });
 
     test('returns failure when api does not return 200', () async {
@@ -37,7 +37,7 @@ main() {
           getRandomAnimalPath, (server) => server.reply(500, 'error'));
 
       final IAnimalRepository animalRepository = AnimalRepository(client: dio);
-      final Either<IFailure, Animal> response =
+      final Either<IFailure, AnimalDto> response =
           await animalRepository.getRandonAnimal();
 
       expect(response.isLeft(), true);

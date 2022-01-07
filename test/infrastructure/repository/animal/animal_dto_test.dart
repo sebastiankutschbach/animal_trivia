@@ -1,11 +1,34 @@
-import 'package:animal_trivia/domain/i_animal.dart';
-import 'package:animal_trivia/infrastructure/repository/animal/animal.dart';
+import 'package:animal_trivia/domain/animal.dart';
+import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
   group('json', () {
     test('parsing', () {
-      final animal = Animal.fromJson(sampleAnimalResponse);
+      final animalDto = AnimalDto.fromJson(sampleAnimalResponse);
+
+      expect(animalDto.name, "Siamang");
+      expect(animalDto.latinName, "Hylobates syndactylus");
+      expect(animalDto.aninmalType, "Mammal");
+      expect(animalDto.activeTime, "Diurnal");
+      expect(animalDto.lengthMin, "1.90");
+      expect(animalDto.lengthMax, "2.00");
+      expect(animalDto.weightMin, "20");
+      expect(animalDto.weightMax, "23");
+      expect(animalDto.lifespan, "23");
+      expect(animalDto.habitat, "Tropical rainforest");
+      expect(animalDto.diet, "Primarily fruit and leaves, some invertebrates");
+      expect(animalDto.geoRange, "Malaysia and Sumatra");
+      expect(animalDto.imageLink.toString(),
+          "https://upload.wikimedia.org/wikipedia/commons/a/a4/DPPP_5348.jpg");
+      expect(animalDto.id, 162);
+    });
+  });
+
+  group('to domain object', () {
+    test('maps dto to domain object', () {
+      final animalDto = AnimalDto.fromJson(sampleAnimalResponse);
+      final Animal animal = animalDto.toDomain();
 
       expect(animal.name, "Siamang");
       expect(animal.latinName, "Hylobates syndactylus");

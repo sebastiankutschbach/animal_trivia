@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'animal.dart';
+part of 'animal_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Animal _$AnimalFromJson(Map<String, dynamic> json) => Animal(
+AnimalDto _$AnimalDtoFromJson(Map<String, dynamic> json) => AnimalDto(
       json['name'] as String,
       json['latin_name'] as String,
       json['animal_type'] as String,
@@ -23,7 +23,7 @@ Animal _$AnimalFromJson(Map<String, dynamic> json) => Animal(
       Uri.parse(json['image_link'] as String),
     );
 
-Map<String, dynamic> _$AnimalToJson(Animal instance) => <String, dynamic>{
+Map<String, dynamic> _$AnimalDtoToJson(AnimalDto instance) => <String, dynamic>{
       'name': instance.name,
       'latin_name': instance.latinName,
       'animal_type': instance.aninmalType,

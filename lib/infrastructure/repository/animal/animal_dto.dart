@@ -1,9 +1,10 @@
+import 'package:animal_trivia/domain/animal.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'animal.g.dart';
+part 'animal_dto.g.dart';
 
 @JsonSerializable()
-class Animal {
+class AnimalDto {
   final String name;
   @JsonKey(name: "latin_name")
   final String latinName;
@@ -28,7 +29,7 @@ class Animal {
   @JsonKey(name: "image_link")
   final Uri imageLink;
 
-  Animal(
+  AnimalDto(
       this.name,
       this.latinName,
       this.aninmalType,
@@ -44,5 +45,22 @@ class Animal {
       this.id,
       this.imageLink);
 
-  factory Animal.fromJson(Map<String, dynamic> json) => _$AnimalFromJson(json);
+  factory AnimalDto.fromJson(Map<String, dynamic> json) =>
+      _$AnimalDtoFromJson(json);
+
+  Animal toDomain() => Animal(
+      name: name,
+      latinName: latinName,
+      aninmalType: aninmalType,
+      activeTime: activeTime,
+      habitat: habitat,
+      diet: diet,
+      geoRange: geoRange,
+      lengthMin: lengthMin,
+      lengthMax: lengthMax,
+      weightMin: weightMin,
+      weightMax: weightMax,
+      lifespan: lifespan,
+      imageLink: imageLink,
+      id: id);
 }
