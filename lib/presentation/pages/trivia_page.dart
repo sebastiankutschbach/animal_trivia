@@ -18,9 +18,21 @@ class TriviaPage extends StatelessWidget {
       child: BlocConsumer<AnimalBloc, AnimalState>(
         listener: (BuildContext context, AnimalState state) {},
         builder: (BuildContext context, AnimalState state) => Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: _appBarTitle(state),
+          ),
           body: _body(state),
         ),
+      ),
+    );
+  }
+
+  Widget _appBarTitle(AnimalState state) {
+    return state.animal.fold(
+      () => const Text('Loading'),
+      (some) => some.fold(
+        (failure) => const Text('Error'),
+        (animal) => Text(animal.name),
       ),
     );
   }
@@ -53,11 +65,7 @@ class TriviaPage extends StatelessWidget {
         ],
       ));
 
-  Widget _successState(Animal animal) => Center(
-        child: Column(
-          children: [
-            Text(animal.name),
-          ],
-        ),
+  Widget _successState(Animal animal) => Image.network(
+        animal.imageLink.toString(),
       );
 }

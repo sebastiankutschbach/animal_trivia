@@ -32,6 +32,7 @@ dev_dependencies:
   http_mock_adapter: ^0.3.2
   mockito: ^5.0.17
   injectable_generator: ^1.5.2
+  network_image_mock: ^2.0.1
 
 flutter:
   uses-material-design: true
