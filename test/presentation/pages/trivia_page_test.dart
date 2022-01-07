@@ -132,7 +132,142 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.latinName), findsOneWidget);
+        expect(find.textContaining(defaultAnimal.latinName), findsOneWidget);
+      });
+    });
+
+    testWidgets('shows type of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.aninmalType), findsOneWidget);
+      });
+    });
+
+    testWidgets('shows active time of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.activeTime), findsOneWidget);
+      });
+    });
+
+    testWidgets('shows habitat time of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.habitat), findsOneWidget);
+      });
+    });
+
+    testWidgets('shows diet of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.diet), findsOneWidget);
+      });
+    });
+
+    testWidgets('shows geo range of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.geoRange), findsOneWidget);
+      });
+    });
+
+    testWidgets('shows min length of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.lengthMin.toString()),
+            findsOneWidget);
+      });
+    });
+
+    testWidgets('shows max length of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.lengthMax.toString()),
+            findsOneWidget);
+      });
+    });
+
+    testWidgets('shows min weight of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.weightMin.toString()),
+            findsOneWidget);
+      });
+    });
+
+    testWidgets('shows max weight of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.weightMax.toString()),
+            findsOneWidget);
+      });
+    });
+
+    testWidgets('shows lifespan of the animal after loading',
+        (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          _createApp(animal: defaultAnimal),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.textContaining(defaultAnimal.lifespan.toString()),
+            findsOneWidget);
       });
     });
   });

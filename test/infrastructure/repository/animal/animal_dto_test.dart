@@ -34,11 +34,11 @@ main() {
       expect(animal.latinName, "Hylobates syndactylus");
       expect(animal.aninmalType, "Mammal");
       expect(animal.activeTime, "Diurnal");
-      expect(animal.lengthMin, "1.90");
-      expect(animal.lengthMax, "2.00");
-      expect(animal.weightMin, "20");
-      expect(animal.weightMax, "23");
-      expect(animal.lifespan, "23");
+      expect(animal.lengthMin, 1.9 * 30.48);
+      expect(animal.lengthMax, 2.0 * 30.48);
+      expect(animal.weightMin, 20.0 * 0.45359237);
+      expect(animal.weightMax, 23.0 * 0.45359237);
+      expect(animal.lifespan, 23.0);
       expect(animal.habitat, "Tropical rainforest");
       expect(animal.diet, "Primarily fruit and leaves, some invertebrates");
       expect(animal.geoRange, "Malaysia and Sumatra");
