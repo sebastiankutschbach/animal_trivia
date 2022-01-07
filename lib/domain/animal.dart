@@ -7,18 +7,18 @@ class Animal with _$Animal {
   const Animal._();
 
   factory Animal(
-      {name,
-      latinName,
-      aninmalType,
-      activeTime,
-      habitat,
-      diet,
-      geoRange,
-      lengthMin,
-      lengthMax,
-      weightMin,
-      weightMax,
-      lifespan,
-      id,
-      imageLink}) = _Animal;
+      {required String name,
+      required String latinName,
+      required String aninmalType,
+      required String activeTime,
+      required String habitat,
+      required String diet,
+      required String geoRange,
+      required String lengthMin,
+      required String lengthMax,
+      required String weightMin,
+      required String weightMax,
+      required String lifespan,
+      required int id,
+      required Uri imageLink}) = _Animal;
 }

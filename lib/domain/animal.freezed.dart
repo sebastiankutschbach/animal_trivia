@@ -19,20 +19,20 @@ class _$AnimalTearOff {
   const _$AnimalTearOff();
 
   _Animal call(
-      {dynamic name,
-      dynamic latinName,
-      dynamic aninmalType,
-      dynamic activeTime,
-      dynamic habitat,
-      dynamic diet,
-      dynamic geoRange,
-      dynamic lengthMin,
-      dynamic lengthMax,
-      dynamic weightMin,
-      dynamic weightMax,
-      dynamic lifespan,
-      dynamic id,
-      dynamic imageLink}) {
+      {required String name,
+      required String latinName,
+      required String aninmalType,
+      required String activeTime,
+      required String habitat,
+      required String diet,
+      required String geoRange,
+      required String lengthMin,
+      required String lengthMax,
+      required String weightMin,
+      required String weightMax,
+      required String lifespan,
+      required int id,
+      required Uri imageLink}) {
     return _Animal(
       name: name,
       latinName: latinName,
@@ -57,20 +57,20 @@ const $Animal = _$AnimalTearOff();
 
 /// @nodoc
 mixin _$Animal {
-  dynamic get name => throw _privateConstructorUsedError;
-  dynamic get latinName => throw _privateConstructorUsedError;
-  dynamic get aninmalType => throw _privateConstructorUsedError;
-  dynamic get activeTime => throw _privateConstructorUsedError;
-  dynamic get habitat => throw _privateConstructorUsedError;
-  dynamic get diet => throw _privateConstructorUsedError;
-  dynamic get geoRange => throw _privateConstructorUsedError;
-  dynamic get lengthMin => throw _privateConstructorUsedError;
-  dynamic get lengthMax => throw _privateConstructorUsedError;
-  dynamic get weightMin => throw _privateConstructorUsedError;
-  dynamic get weightMax => throw _privateConstructorUsedError;
-  dynamic get lifespan => throw _privateConstructorUsedError;
-  dynamic get id => throw _privateConstructorUsedError;
-  dynamic get imageLink => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get latinName => throw _privateConstructorUsedError;
+  String get aninmalType => throw _privateConstructorUsedError;
+  String get activeTime => throw _privateConstructorUsedError;
+  String get habitat => throw _privateConstructorUsedError;
+  String get diet => throw _privateConstructorUsedError;
+  String get geoRange => throw _privateConstructorUsedError;
+  String get lengthMin => throw _privateConstructorUsedError;
+  String get lengthMax => throw _privateConstructorUsedError;
+  String get weightMin => throw _privateConstructorUsedError;
+  String get weightMax => throw _privateConstructorUsedError;
+  String get lifespan => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  Uri get imageLink => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AnimalCopyWith<Animal> get copyWith => throw _privateConstructorUsedError;
@@ -81,20 +81,20 @@ abstract class $AnimalCopyWith<$Res> {
   factory $AnimalCopyWith(Animal value, $Res Function(Animal) then) =
       _$AnimalCopyWithImpl<$Res>;
   $Res call(
-      {dynamic name,
-      dynamic latinName,
-      dynamic aninmalType,
-      dynamic activeTime,
-      dynamic habitat,
-      dynamic diet,
-      dynamic geoRange,
-      dynamic lengthMin,
-      dynamic lengthMax,
-      dynamic weightMin,
-      dynamic weightMax,
-      dynamic lifespan,
-      dynamic id,
-      dynamic imageLink});
+      {String name,
+      String latinName,
+      String aninmalType,
+      String activeTime,
+      String habitat,
+      String diet,
+      String geoRange,
+      String lengthMin,
+      String lengthMax,
+      String weightMin,
+      String weightMax,
+      String lifespan,
+      int id,
+      Uri imageLink});
 }
 
 /// @nodoc
@@ -126,59 +126,59 @@ class _$AnimalCopyWithImpl<$Res> implements $AnimalCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       latinName: latinName == freezed
           ? _value.latinName
           : latinName // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       aninmalType: aninmalType == freezed
           ? _value.aninmalType
           : aninmalType // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       activeTime: activeTime == freezed
           ? _value.activeTime
           : activeTime // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       habitat: habitat == freezed
           ? _value.habitat
           : habitat // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       diet: diet == freezed
           ? _value.diet
           : diet // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       geoRange: geoRange == freezed
           ? _value.geoRange
           : geoRange // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       lengthMin: lengthMin == freezed
           ? _value.lengthMin
           : lengthMin // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       lengthMax: lengthMax == freezed
           ? _value.lengthMax
           : lengthMax // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       weightMin: weightMin == freezed
           ? _value.weightMin
           : weightMin // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       weightMax: weightMax == freezed
           ? _value.weightMax
           : weightMax // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       lifespan: lifespan == freezed
           ? _value.lifespan
           : lifespan // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as int,
       imageLink: imageLink == freezed
           ? _value.imageLink
           : imageLink // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as Uri,
     ));
   }
 }
@@ -189,20 +189,20 @@ abstract class _$AnimalCopyWith<$Res> implements $AnimalCopyWith<$Res> {
       __$AnimalCopyWithImpl<$Res>;
   @override
   $Res call(
-      {dynamic name,
-      dynamic latinName,
-      dynamic aninmalType,
-      dynamic activeTime,
-      dynamic habitat,
-      dynamic diet,
-      dynamic geoRange,
-      dynamic lengthMin,
-      dynamic lengthMax,
-      dynamic weightMin,
-      dynamic weightMax,
-      dynamic lifespan,
-      dynamic id,
-      dynamic imageLink});
+      {String name,
+      String latinName,
+      String aninmalType,
+      String activeTime,
+      String habitat,
+      String diet,
+      String geoRange,
+      String lengthMin,
+      String lengthMax,
+      String weightMin,
+      String weightMax,
+      String lifespan,
+      int id,
+      Uri imageLink});
 }
 
 /// @nodoc
@@ -232,20 +232,62 @@ class __$AnimalCopyWithImpl<$Res> extends _$AnimalCopyWithImpl<$Res>
     Object? imageLink = freezed,
   }) {
     return _then(_Animal(
-      name: name == freezed ? _value.name : name,
-      latinName: latinName == freezed ? _value.latinName : latinName,
-      aninmalType: aninmalType == freezed ? _value.aninmalType : aninmalType,
-      activeTime: activeTime == freezed ? _value.activeTime : activeTime,
-      habitat: habitat == freezed ? _value.habitat : habitat,
-      diet: diet == freezed ? _value.diet : diet,
-      geoRange: geoRange == freezed ? _value.geoRange : geoRange,
-      lengthMin: lengthMin == freezed ? _value.lengthMin : lengthMin,
-      lengthMax: lengthMax == freezed ? _value.lengthMax : lengthMax,
-      weightMin: weightMin == freezed ? _value.weightMin : weightMin,
-      weightMax: weightMax == freezed ? _value.weightMax : weightMax,
-      lifespan: lifespan == freezed ? _value.lifespan : lifespan,
-      id: id == freezed ? _value.id : id,
-      imageLink: imageLink == freezed ? _value.imageLink : imageLink,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      latinName: latinName == freezed
+          ? _value.latinName
+          : latinName // ignore: cast_nullable_to_non_nullable
+              as String,
+      aninmalType: aninmalType == freezed
+          ? _value.aninmalType
+          : aninmalType // ignore: cast_nullable_to_non_nullable
+              as String,
+      activeTime: activeTime == freezed
+          ? _value.activeTime
+          : activeTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      habitat: habitat == freezed
+          ? _value.habitat
+          : habitat // ignore: cast_nullable_to_non_nullable
+              as String,
+      diet: diet == freezed
+          ? _value.diet
+          : diet // ignore: cast_nullable_to_non_nullable
+              as String,
+      geoRange: geoRange == freezed
+          ? _value.geoRange
+          : geoRange // ignore: cast_nullable_to_non_nullable
+              as String,
+      lengthMin: lengthMin == freezed
+          ? _value.lengthMin
+          : lengthMin // ignore: cast_nullable_to_non_nullable
+              as String,
+      lengthMax: lengthMax == freezed
+          ? _value.lengthMax
+          : lengthMax // ignore: cast_nullable_to_non_nullable
+              as String,
+      weightMin: weightMin == freezed
+          ? _value.weightMin
+          : weightMin // ignore: cast_nullable_to_non_nullable
+              as String,
+      weightMax: weightMax == freezed
+          ? _value.weightMax
+          : weightMax // ignore: cast_nullable_to_non_nullable
+              as String,
+      lifespan: lifespan == freezed
+          ? _value.lifespan
+          : lifespan // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      imageLink: imageLink == freezed
+          ? _value.imageLink
+          : imageLink // ignore: cast_nullable_to_non_nullable
+              as Uri,
     ));
   }
 }
@@ -254,50 +296,50 @@ class __$AnimalCopyWithImpl<$Res> extends _$AnimalCopyWithImpl<$Res>
 
 class _$_Animal extends _Animal {
   _$_Animal(
-      {this.name,
-      this.latinName,
-      this.aninmalType,
-      this.activeTime,
-      this.habitat,
-      this.diet,
-      this.geoRange,
-      this.lengthMin,
-      this.lengthMax,
-      this.weightMin,
-      this.weightMax,
-      this.lifespan,
-      this.id,
-      this.imageLink})
+      {required this.name,
+      required this.latinName,
+      required this.aninmalType,
+      required this.activeTime,
+      required this.habitat,
+      required this.diet,
+      required this.geoRange,
+      required this.lengthMin,
+      required this.lengthMax,
+      required this.weightMin,
+      required this.weightMax,
+      required this.lifespan,
+      required this.id,
+      required this.imageLink})
       : super._();
 
   @override
-  final dynamic name;
+  final String name;
   @override
-  final dynamic latinName;
+  final String latinName;
   @override
-  final dynamic aninmalType;
+  final String aninmalType;
   @override
-  final dynamic activeTime;
+  final String activeTime;
   @override
-  final dynamic habitat;
+  final String habitat;
   @override
-  final dynamic diet;
+  final String diet;
   @override
-  final dynamic geoRange;
+  final String geoRange;
   @override
-  final dynamic lengthMin;
+  final String lengthMin;
   @override
-  final dynamic lengthMax;
+  final String lengthMax;
   @override
-  final dynamic weightMin;
+  final String weightMin;
   @override
-  final dynamic weightMax;
+  final String weightMax;
   @override
-  final dynamic lifespan;
+  final String lifespan;
   @override
-  final dynamic id;
+  final int id;
   @override
-  final dynamic imageLink;
+  final Uri imageLink;
 
   @override
   String toString() {
@@ -353,50 +395,50 @@ class _$_Animal extends _Animal {
 
 abstract class _Animal extends Animal {
   factory _Animal(
-      {dynamic name,
-      dynamic latinName,
-      dynamic aninmalType,
-      dynamic activeTime,
-      dynamic habitat,
-      dynamic diet,
-      dynamic geoRange,
-      dynamic lengthMin,
-      dynamic lengthMax,
-      dynamic weightMin,
-      dynamic weightMax,
-      dynamic lifespan,
-      dynamic id,
-      dynamic imageLink}) = _$_Animal;
+      {required String name,
+      required String latinName,
+      required String aninmalType,
+      required String activeTime,
+      required String habitat,
+      required String diet,
+      required String geoRange,
+      required String lengthMin,
+      required String lengthMax,
+      required String weightMin,
+      required String weightMax,
+      required String lifespan,
+      required int id,
+      required Uri imageLink}) = _$_Animal;
   _Animal._() : super._();
 
   @override
-  dynamic get name;
+  String get name;
   @override
-  dynamic get latinName;
+  String get latinName;
   @override
-  dynamic get aninmalType;
+  String get aninmalType;
   @override
-  dynamic get activeTime;
+  String get activeTime;
   @override
-  dynamic get habitat;
+  String get habitat;
   @override
-  dynamic get diet;
+  String get diet;
   @override
-  dynamic get geoRange;
+  String get geoRange;
   @override
-  dynamic get lengthMin;
+  String get lengthMin;
   @override
-  dynamic get lengthMax;
+  String get lengthMax;
   @override
-  dynamic get weightMin;
+  String get weightMin;
   @override
-  dynamic get weightMax;
+  String get weightMax;
   @override
-  dynamic get lifespan;
+  String get lifespan;
   @override
-  dynamic get id;
+  int get id;
   @override
-  dynamic get imageLink;
+  Uri get imageLink;
   @override
   @JsonKey(ignore: true)
   _$AnimalCopyWith<_Animal> get copyWith => throw _privateConstructorUsedError;
