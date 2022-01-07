@@ -14,10 +14,7 @@ class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
 
   AnimalBloc(this.animalRepository) : super(AnimalState.initial()) {
     on<RandomAnimalRequested>((event, emit) async {
-      emit(
-        state.copyWith(isLoading: true),
-      );
-      animalRepository.getRandonAnimal().then(
+      await animalRepository.getRandonAnimal().then(
             (animal) => emit(
               state.copyWith(animal: some(animal)),
             ),

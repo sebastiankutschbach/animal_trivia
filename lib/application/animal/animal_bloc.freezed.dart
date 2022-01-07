@@ -183,14 +183,9 @@ abstract class RandomAnimalRequested implements AnimalEvent {
 class _$AnimalStateTearOff {
   const _$AnimalStateTearOff();
 
-  _AnimalState call(
-      {required Option<Either<IFailure, Animal>> animal,
-      required bool isLoading,
-      required bool isError}) {
+  _AnimalState call({required Option<Either<IFailure, Animal>> animal}) {
     return _AnimalState(
       animal: animal,
-      isLoading: isLoading,
-      isError: isError,
     );
   }
 }
@@ -202,8 +197,6 @@ const $AnimalState = _$AnimalStateTearOff();
 mixin _$AnimalState {
   Option<Either<IFailure, Animal>> get animal =>
       throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
-  bool get isError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AnimalStateCopyWith<AnimalState> get copyWith =>
@@ -215,8 +208,7 @@ abstract class $AnimalStateCopyWith<$Res> {
   factory $AnimalStateCopyWith(
           AnimalState value, $Res Function(AnimalState) then) =
       _$AnimalStateCopyWithImpl<$Res>;
-  $Res call(
-      {Option<Either<IFailure, Animal>> animal, bool isLoading, bool isError});
+  $Res call({Option<Either<IFailure, Animal>> animal});
 }
 
 /// @nodoc
@@ -230,22 +222,12 @@ class _$AnimalStateCopyWithImpl<$Res> implements $AnimalStateCopyWith<$Res> {
   @override
   $Res call({
     Object? animal = freezed,
-    Object? isLoading = freezed,
-    Object? isError = freezed,
   }) {
     return _then(_value.copyWith(
       animal: animal == freezed
           ? _value.animal
           : animal // ignore: cast_nullable_to_non_nullable
               as Option<Either<IFailure, Animal>>,
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isError: isError == freezed
-          ? _value.isError
-          : isError // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -257,8 +239,7 @@ abstract class _$AnimalStateCopyWith<$Res>
           _AnimalState value, $Res Function(_AnimalState) then) =
       __$AnimalStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {Option<Either<IFailure, Animal>> animal, bool isLoading, bool isError});
+  $Res call({Option<Either<IFailure, Animal>> animal});
 }
 
 /// @nodoc
@@ -274,22 +255,12 @@ class __$AnimalStateCopyWithImpl<$Res> extends _$AnimalStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? animal = freezed,
-    Object? isLoading = freezed,
-    Object? isError = freezed,
   }) {
     return _then(_AnimalState(
       animal: animal == freezed
           ? _value.animal
           : animal // ignore: cast_nullable_to_non_nullable
               as Option<Either<IFailure, Animal>>,
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isError: isError == freezed
-          ? _value.isError
-          : isError // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -297,19 +268,14 @@ class __$AnimalStateCopyWithImpl<$Res> extends _$AnimalStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AnimalState implements _AnimalState {
-  _$_AnimalState(
-      {required this.animal, required this.isLoading, required this.isError});
+  _$_AnimalState({required this.animal});
 
   @override
   final Option<Either<IFailure, Animal>> animal;
-  @override
-  final bool isLoading;
-  @override
-  final bool isError;
 
   @override
   String toString() {
-    return 'AnimalState(animal: $animal, isLoading: $isLoading, isError: $isError)';
+    return 'AnimalState(animal: $animal)';
   }
 
   @override
@@ -317,17 +283,12 @@ class _$_AnimalState implements _AnimalState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AnimalState &&
-            const DeepCollectionEquality().equals(other.animal, animal) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality().equals(other.isError, isError));
+            const DeepCollectionEquality().equals(other.animal, animal));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(animal),
-      const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(isError));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(animal));
 
   @JsonKey(ignore: true)
   @override
@@ -336,17 +297,11 @@ class _$_AnimalState implements _AnimalState {
 }
 
 abstract class _AnimalState implements AnimalState {
-  factory _AnimalState(
-      {required Option<Either<IFailure, Animal>> animal,
-      required bool isLoading,
-      required bool isError}) = _$_AnimalState;
+  factory _AnimalState({required Option<Either<IFailure, Animal>> animal}) =
+      _$_AnimalState;
 
   @override
   Option<Either<IFailure, Animal>> get animal;
-  @override
-  bool get isLoading;
-  @override
-  bool get isError;
   @override
   @JsonKey(ignore: true)
   _$AnimalStateCopyWith<_AnimalState> get copyWith =>
