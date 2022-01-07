@@ -183,7 +183,7 @@ abstract class RandomAnimalRequested implements AnimalEvent {
 class _$AnimalStateTearOff {
   const _$AnimalStateTearOff();
 
-  _AnimalState call({required Option<Either<IFailure, Animal>> animal}) {
+  _AnimalState call({required Option<Either<Failure, Animal>> animal}) {
     return _AnimalState(
       animal: animal,
     );
@@ -195,7 +195,7 @@ const $AnimalState = _$AnimalStateTearOff();
 
 /// @nodoc
 mixin _$AnimalState {
-  Option<Either<IFailure, Animal>> get animal =>
+  Option<Either<Failure, Animal>> get animal =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -208,7 +208,7 @@ abstract class $AnimalStateCopyWith<$Res> {
   factory $AnimalStateCopyWith(
           AnimalState value, $Res Function(AnimalState) then) =
       _$AnimalStateCopyWithImpl<$Res>;
-  $Res call({Option<Either<IFailure, Animal>> animal});
+  $Res call({Option<Either<Failure, Animal>> animal});
 }
 
 /// @nodoc
@@ -227,7 +227,7 @@ class _$AnimalStateCopyWithImpl<$Res> implements $AnimalStateCopyWith<$Res> {
       animal: animal == freezed
           ? _value.animal
           : animal // ignore: cast_nullable_to_non_nullable
-              as Option<Either<IFailure, Animal>>,
+              as Option<Either<Failure, Animal>>,
     ));
   }
 }
@@ -239,7 +239,7 @@ abstract class _$AnimalStateCopyWith<$Res>
           _AnimalState value, $Res Function(_AnimalState) then) =
       __$AnimalStateCopyWithImpl<$Res>;
   @override
-  $Res call({Option<Either<IFailure, Animal>> animal});
+  $Res call({Option<Either<Failure, Animal>> animal});
 }
 
 /// @nodoc
@@ -260,7 +260,7 @@ class __$AnimalStateCopyWithImpl<$Res> extends _$AnimalStateCopyWithImpl<$Res>
       animal: animal == freezed
           ? _value.animal
           : animal // ignore: cast_nullable_to_non_nullable
-              as Option<Either<IFailure, Animal>>,
+              as Option<Either<Failure, Animal>>,
     ));
   }
 }
@@ -271,7 +271,7 @@ class _$_AnimalState implements _AnimalState {
   _$_AnimalState({required this.animal});
 
   @override
-  final Option<Either<IFailure, Animal>> animal;
+  final Option<Either<Failure, Animal>> animal;
 
   @override
   String toString() {
@@ -297,11 +297,11 @@ class _$_AnimalState implements _AnimalState {
 }
 
 abstract class _AnimalState implements AnimalState {
-  factory _AnimalState({required Option<Either<IFailure, Animal>> animal}) =
+  factory _AnimalState({required Option<Either<Failure, Animal>> animal}) =
       _$_AnimalState;
 
   @override
-  Option<Either<IFailure, Animal>> get animal;
+  Option<Either<Failure, Animal>> get animal;
   @override
   @JsonKey(ignore: true)
   _$AnimalStateCopyWith<_AnimalState> get copyWith =>

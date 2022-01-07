@@ -1,6 +1,5 @@
 import 'package:animal_trivia/domain/animal.dart';
-import 'package:animal_trivia/domain/i_failure.dart';
-import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
+import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_repository.dart';
 import 'package:animal_trivia/domain/i_animal_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -21,7 +20,7 @@ main() {
           (server) => server.reply(200, sampleAnimalResponse));
 
       final IAnimalRepository animalRepository = AnimalRepository(client: dio);
-      final Either<IFailure, Animal> response =
+      final Either<Failure, Animal> response =
           await animalRepository.getRandonAnimal();
 
       expect(response.isLeft(), false);
@@ -38,7 +37,7 @@ main() {
           getRandomAnimalPath, (server) => server.reply(500, 'error'));
 
       final IAnimalRepository animalRepository = AnimalRepository(client: dio);
-      final Either<IFailure, Animal> response =
+      final Either<Failure, Animal> response =
           await animalRepository.getRandonAnimal();
 
       expect(response.isLeft(), true);

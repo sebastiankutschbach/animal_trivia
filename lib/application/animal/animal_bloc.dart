@@ -1,5 +1,5 @@
 import 'package:animal_trivia/domain/animal.dart';
-import 'package:animal_trivia/domain/i_failure.dart';
+import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/domain/i_animal_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';

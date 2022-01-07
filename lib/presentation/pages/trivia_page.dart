@@ -1,4 +1,6 @@
 import 'package:animal_trivia/application/animal/animal_bloc.dart';
+import 'package:animal_trivia/domain/animal.dart';
+import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +33,8 @@ class TriviaPage extends StatelessWidget {
     return state.animal.fold(
       () => _loadingState(),
       (some) => some.fold(
-        (failure) => _errorState(),
-        (animal) => Text(
-          animal.toString(),
-        ),
+        (failure) => _errorState(failure),
+        (animal) => _successState(animal),
       ),
     );
   }
@@ -43,7 +43,16 @@ class TriviaPage extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
 
-  Widget _errorState() => const Center(
-        child: Text('Error'),
+  Widget _errorState(Failure failure) => Center(
+        child:
+            Text('Error while retrieving a random animal: ${failure.message}'),
+      );
+
+  Widget _successState(Animal animal) => Center(
+        child: Column(
+          children: [
+            Text(animal.name),
+          ],
+        ),
       );
 }

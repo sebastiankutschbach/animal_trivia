@@ -5,8 +5,8 @@
 import 'dart:async' as _i4;
 
 import 'package:animal_trivia/domain/animal.dart' as _i6;
+import 'package:animal_trivia/domain/failure.dart' as _i5;
 import 'package:animal_trivia/domain/i_animal_repository.dart' as _i3;
-import 'package:animal_trivia/domain/i_failure.dart' as _i5;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -30,9 +30,9 @@ class MockIAnimalRepository extends _i1.Mock implements _i3.IAnimalRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.IFailure, _i6.Animal>> getRandonAnimal() =>
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Animal>> getRandonAnimal() =>
       (super.noSuchMethod(Invocation.method(#getRandonAnimal, []),
-              returnValue: Future<_i2.Either<_i5.IFailure, _i6.Animal>>.value(
-                  _FakeEither_0<_i5.IFailure, _i6.Animal>()))
-          as _i4.Future<_i2.Either<_i5.IFailure, _i6.Animal>>);
+              returnValue: Future<_i2.Either<_i5.Failure, _i6.Animal>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.Animal>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.Animal>>);
 }
