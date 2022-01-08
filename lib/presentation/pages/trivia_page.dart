@@ -68,55 +68,79 @@ class TriviaPage extends StatelessWidget {
         ],
       ));
 
-  Widget _successState(BuildContext context, Animal animal) => RefreshIndicator(
-        onRefresh: () async => context.read<AnimalBloc>().add(
-              const RandomAnimalRequested(),
-            ),
-        child: ListView(
-          children: [
-            Image.network(
-              animal.imageLink.toString(),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.latinName),
-              subtitle: Text(animal.latinName),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.animalType),
-              subtitle: Text(animal.aninmalType),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.activeTime),
-              subtitle: Text(animal.activeTime),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.habitat),
-              subtitle: Text(animal.habitat),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.diet),
-              subtitle: Text(animal.diet),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.geoRange),
-              subtitle: Text(animal.geoRange),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.length),
-              subtitle: Text(
-                  '${animal.lengthMin.toStringAsFixed(2)} - ${animal.lengthMax.toStringAsFixed(2)} cm'),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.weight),
-              subtitle: Text(
-                  '${animal.weightMin.toStringAsFixed(2)} - ${animal.weightMax.toStringAsFixed(2)} kg'),
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.lifespan),
-              subtitle: Text(
-                  '${animal.lifespan} ${AppLocalizations.of(context)!.years}'),
-            ),
-          ],
+  Widget _successState(BuildContext context, Animal animal) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: RefreshIndicator(
+          onRefresh: () async => context.read<AnimalBloc>().add(
+                const RandomAnimalRequested(),
+              ),
+          child: ListView(
+            children: [
+              Image.network(
+                animal.imageLink.toString(),
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.title),
+                title: Text(AppLocalizations.of(context)!.latinName),
+                subtitle: Text(animal.latinName),
+              ),
+              ListTile(
+                leading: const Icon(Icons.bug_report),
+                title: Text(AppLocalizations.of(context)!.animalType),
+                subtitle: Text(animal.aninmalType),
+              ),
+              ListTile(
+                leading: const Icon(Icons.timer),
+                title: Text(AppLocalizations.of(context)!.activeTime),
+                subtitle: Text(animal.activeTime),
+              ),
+              ListTile(
+                leading: const Icon(Icons.house),
+                title: Text(AppLocalizations.of(context)!.habitat),
+                subtitle: Text(animal.habitat),
+              ),
+              ListTile(
+                leading: const Icon(Icons.restaurant),
+                title: Text(AppLocalizations.of(context)!.diet),
+                subtitle: Text(animal.diet),
+              ),
+              ListTile(
+                leading: const Icon(Icons.map),
+                title: Text(AppLocalizations.of(context)!.geoRange),
+                subtitle: Text(animal.geoRange),
+              ),
+              ListTile(
+                leading: const Icon(Icons.straighten),
+                title: Text(AppLocalizations.of(context)!.length),
+                subtitle: Text(
+                    '${animal.lengthMin.toStringAsFixed(2)} - ${animal.lengthMax.toStringAsFixed(2)} cm'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.fitness_center),
+                title: Text(AppLocalizations.of(context)!.weight),
+                subtitle: Text(
+                    '${animal.weightMin.toStringAsFixed(2)} - ${animal.weightMax.toStringAsFixed(2)} kg'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.hourglass_bottom),
+                title: Text(AppLocalizations.of(context)!.lifespan),
+                subtitle: Text(
+                    '${animal.lifespan} ${AppLocalizations.of(context)!.years}'),
+              ),
+            ],
+          ),
         ),
       );
 }
