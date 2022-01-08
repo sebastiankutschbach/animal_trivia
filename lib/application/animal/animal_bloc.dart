@@ -51,6 +51,9 @@ extension Translation on Animal {
       {required String from, required String to}) async {
     return copyWith(
       name: await getTranslationOrFallback(translateService, name,
+              from: from, to: to) +
+          '\n($name)',
+      activeTime: await getTranslationOrFallback(translateService, activeTime,
           from: from, to: to),
       aninmalType: await getTranslationOrFallback(translateService, aninmalType,
           from: from, to: to),
@@ -67,7 +70,6 @@ extension Translation on Animal {
       TranslateService translateService, String text,
       {required String from, required String to}) async {
     final result = await translateService.translate(text, from: from, to: to);
-    return result.fold(
-        (failure) => text, (translation) => '$translation ($text)');
+    return result.fold((failure) => text, (translation) => translation);
   }
 }
