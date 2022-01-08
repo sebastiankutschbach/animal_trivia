@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() {
   test('translates just fine', () async {
-    final result =
-        await TranslateService(Dio()).translate('cat', from: 'en', to: 'de');
+    final result = await TranslateService(Dio())
+        .translate(['dog', 'cat', 'mouse'], from: 'en', to: 'de');
     expect(result.isLeft(), false);
     expect(result.isRight(), true);
-    expect(result.fold((l) => null, (r) => r), 'Katze');
+    expect(result.fold((l) => null, (r) => r), ['Hund', 'Katze', 'Maus']);
   });
 }

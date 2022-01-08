@@ -49,27 +49,25 @@ class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
 extension Translation on Animal {
   Future<Animal> translatedAndConverted(TranslateService translateService,
       {required String from, required String to}) async {
+    final List<String> translations = await getTranslationOrFallback(
+        translateService,
+        [name, activeTime, aninmalType, habitat, diet, geoRange],
+        from: from,
+        to: to);
     return copyWith(
-      name: await getTranslationOrFallback(translateService, name,
-              from: from, to: to) +
-          '\n($name)',
-      activeTime: await getTranslationOrFallback(translateService, activeTime,
-          from: from, to: to),
-      aninmalType: await getTranslationOrFallback(translateService, aninmalType,
-          from: from, to: to),
-      habitat: await getTranslationOrFallback(translateService, habitat,
-          from: from, to: to),
-      diet: await getTranslationOrFallback(translateService, diet,
-          from: from, to: to),
-      geoRange: await getTranslationOrFallback(translateService, geoRange,
-          from: from, to: to),
+      name: translations[0] + '\n($name)',
+      activeTime: translations[1],
+      aninmalType: translations[2],
+      habitat: translations[3],
+      diet: translations[4],
+      geoRange: translations[5],
     );
   }
 
-  Future<String> getTranslationOrFallback(
-      TranslateService translateService, String text,
+  Future<List<String>> getTranslationOrFallback(
+      TranslateService translateService, List<String> texts,
       {required String from, required String to}) async {
-    final result = await translateService.translate(text, from: from, to: to);
-    return result.fold((failure) => text, (translation) => translation);
+    final result = await translateService.translate(texts, from: from, to: to);
+    return result.fold((failure) => texts, (translation) => translation);
   }
 }

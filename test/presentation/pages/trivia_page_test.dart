@@ -52,10 +52,20 @@ main() {
     expect(
       find.descendant(
         of: find.byType(AppBar),
-        matching: find.text(text),
+        matching: find.textContaining(text),
       ),
       findsOneWidget,
     );
+  }
+
+  _findTextInListTile(String listTileTitle, String text) {
+    final tile = find
+        .byType(ListTile)
+        .evaluate()
+        .map((e) => e as ListTile)
+        .where((ListTile tile) =>
+            tile.title is Text && (tile.title as Text).data == listTileTitle);
+    expect((tile.first.title as Text).data!.contains(text), true);
   }
 
   group('loading state', () {
@@ -132,7 +142,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.latinName), findsOneWidget);
+        expect(find.text(defaultAnimal.latinName), findsOneWidget);
       });
     });
 
@@ -145,7 +155,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.aninmalType), findsOneWidget);
+        expect(find.text(defaultAnimal.aninmalType), findsOneWidget);
       });
     });
 
@@ -158,7 +168,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.activeTime), findsOneWidget);
+        expect(find.text(defaultAnimal.activeTime), findsOneWidget);
       });
     });
 
@@ -171,7 +181,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.habitat), findsOneWidget);
+        expect(find.text(defaultAnimal.habitat), findsOneWidget);
       });
     });
 
@@ -184,7 +194,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.diet), findsOneWidget);
+        expect(find.text(defaultAnimal.diet), findsOneWidget);
       });
     });
 
@@ -197,7 +207,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.geoRange), findsOneWidget);
+        expect(find.text(defaultAnimal.geoRange), findsOneWidget);
       });
     });
 
@@ -210,8 +220,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.lengthMin.toString()),
-            findsOneWidget);
+        expect(find.text(defaultAnimal.lengthMin.toString()), findsOneWidget);
       });
     });
 
@@ -224,8 +233,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.lengthMax.toString()),
-            findsOneWidget);
+        expect(find.text(defaultAnimal.lengthMax.toString()), findsOneWidget);
       });
     });
 
@@ -238,8 +246,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.weightMin.toString()),
-            findsOneWidget);
+        expect(find.text(defaultAnimal.weightMin.toString()), findsOneWidget);
       });
     });
 
@@ -252,8 +259,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.weightMax.toString()),
-            findsOneWidget);
+        expect(find.text(defaultAnimal.weightMax.toString()), findsOneWidget);
       });
     });
 
@@ -266,8 +272,7 @@ main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.textContaining(defaultAnimal.lifespan.toString()),
-            findsOneWidget);
+        expect(find.text(defaultAnimal.lifespan.toString()), findsOneWidget);
       });
     });
   });

@@ -9,7 +9,7 @@ class TranslateService {
 
   TranslateService(this.client);
 
-  Future<Either<Failure, String>> translate(String s,
+  Future<Either<Failure, List<String>>> translate(List<String> strings,
       {required String from, required String to}) async {
     try {
       final response = await client.get(
@@ -19,10 +19,11 @@ class TranslateService {
             'sl': from,
             'tl': to,
             'dt': 't',
-            'q': s
+            'q': strings.join('#')
           });
+      final String data = response.data[0][0][0];
 
-      return right(response.data[0][0][0]);
+      return right(data.split('#'));
     } on DioError catch (e) {
       return left(Failure(message: e.message));
     }
