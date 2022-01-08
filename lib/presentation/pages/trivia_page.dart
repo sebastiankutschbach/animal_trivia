@@ -68,22 +68,55 @@ class TriviaPage extends StatelessWidget {
         ],
       ));
 
-  Widget _successState(BuildContext context, Animal animal) => Column(
-        children: [
-          Image.network(
-            animal.imageLink.toString(),
-          ),
-          Text('Latin name: ${animal.latinName}'),
-          Text('Type: ${animal.aninmalType}'),
-          Text('Active time: ${animal.activeTime}'),
-          Text('Habitat: ${animal.habitat}'),
-          Text('Diet: ${animal.diet}'),
-          Text('Geo Range: ${animal.geoRange}'),
-          Text('Min Length: ${animal.lengthMin} cm'),
-          Text('Max Length: ${animal.lengthMax} cm'),
-          Text('Min Weight: ${animal.weightMin} kg'),
-          Text('Max Weight: ${animal.weightMax} kg'),
-          Text('Lifespan: ${animal.lifespan} years'),
-        ],
+  Widget _successState(BuildContext context, Animal animal) => RefreshIndicator(
+        onRefresh: () async => context.read<AnimalBloc>().add(
+              const RandomAnimalRequested(),
+            ),
+        child: ListView(
+          children: [
+            Image.network(
+              animal.imageLink.toString(),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.latinName),
+              subtitle: Text(animal.latinName),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.animalType),
+              subtitle: Text(animal.aninmalType),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.activeTime),
+              subtitle: Text(animal.activeTime),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.habitat),
+              subtitle: Text(animal.habitat),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.diet),
+              subtitle: Text(animal.diet),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.geoRange),
+              subtitle: Text(animal.geoRange),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.length),
+              subtitle: Text(
+                  '${animal.lengthMin.toStringAsFixed(2)} - ${animal.lengthMax.toStringAsFixed(2)} cm'),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.weight),
+              subtitle: Text(
+                  '${animal.weightMin.toStringAsFixed(2)} - ${animal.weightMax.toStringAsFixed(2)} kg'),
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.lifespan),
+              subtitle: Text(
+                  '${animal.lifespan} ${AppLocalizations.of(context)!.years}'),
+            ),
+          ],
+        ),
       );
 }

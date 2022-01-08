@@ -2,5 +2,15 @@
     "appTitle": "Animal Trivia",
     "loading": "Loading",
     "error": "Error",
-    "errorLoadingAnimal": "Error while retrieving a random animal:"
+    "errorLoadingAnimal": "Error while retrieving a random animal:",
+    "latinName": "Latin name",
+    "animalType": "Type",
+    "diet": "Diet",
+    "activeTime": "Active time",
+    "habitat": "Habitat",
+    "geoRange": "Geo Range",
+    "length": "Length",
+    "weight": "Weight",
+    "lifespan": "Lifespan",
+    "years": "Years"
 }

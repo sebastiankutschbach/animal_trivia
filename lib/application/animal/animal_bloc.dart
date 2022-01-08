@@ -67,6 +67,7 @@ extension Translation on Animal {
       TranslateService translateService, String text,
       {required String from, required String to}) async {
     final result = await translateService.translate(text, from: from, to: to);
-    return result.fold((failure) => text, (translation) => translation);
+    return result.fold(
+        (failure) => text, (translation) => '$translation ($text)');
   }
 }

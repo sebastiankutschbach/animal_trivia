@@ -2,5 +2,15 @@
     "appTitle": "Tier Fakten",
     "loading": "Lade",
     "error": "Fehler",
-    "errorLoadingAnimal": "Fehler während des Ladens eines zufälligen Tiers:"
+    "errorLoadingAnimal": "Fehler während des Ladens eines zufälligen Tiers:",
+    "latinName": "Lateinischer Name",
+    "animalType": "Art",
+    "diet": "Nahrung",
+    "activeTime": "Aktive Zeit",
+    "habitat": "Lebensraum",
+    "geoRange": "Vorkommen",
+    "length": "Größe",
+    "weight": "Gewicht",
+    "lifespan": "Lebenserwartung",
+    "years": "Jahre"
 }
