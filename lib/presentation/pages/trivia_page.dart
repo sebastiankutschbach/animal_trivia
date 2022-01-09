@@ -78,6 +78,7 @@ class TriviaPage extends StatelessWidget {
             children: [
               Image.network(
                 animal.imageLink.toString(),
+                cacheHeight: MediaQuery.of(context).size.height.toInt(),
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
                   if (loadingProgress == null) return child;
