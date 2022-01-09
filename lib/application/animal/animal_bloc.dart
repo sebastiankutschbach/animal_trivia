@@ -4,6 +4,7 @@ import 'package:animal_trivia/domain/i_animal_repository.dart';
 import 'package:animal_trivia/infrastructure/translation/translate_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,28 +19,18 @@ class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
   final TranslateService translateService;
 
   AnimalBloc(this.animalRepository, this.translateService)
-      : super(AnimalState.initial()) {
+      : super(AnimalInitial()) {
     on<RandomAnimalRequested>((event, emit) async {
-      emit(AnimalState.initial());
+      emit(AnimalLoading());
       await animalRepository.getRandonAnimal().then(
             (animal) => animal.fold(
-              (l) => emit(
-                state.copyWith(
-                  animal: some(animal),
-                ),
-              ),
-              (r) async {
-                final translatedAnimal = await r.translatedAndConverted(
+              (failure) => emit(AnimalLoadError(failure)),
+              (animal) async {
+                final translatedAnimal = await animal.translatedAndConverted(
                     translateService,
                     from: 'en',
                     to: 'de');
-                emit(
-                  state.copyWith(
-                    animal: some(
-                      right(translatedAnimal),
-                    ),
-                  ),
-                );
+                emit(AnimalLoaded(translatedAnimal));
               },
             ),
           );
@@ -56,7 +47,7 @@ extension Translation on Animal {
         from: from,
         to: to);
     return copyWith(
-      name: translations[0] + '\n($name)',
+      name: translations[0],
       activeTime: translations[1],
       aninmalType: translations[2],
       habitat: translations[3],

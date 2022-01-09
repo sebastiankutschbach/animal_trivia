@@ -29,23 +29,21 @@ class TriviaPage extends StatelessWidget {
   }
 
   Widget _appBarTitle(BuildContext context, AnimalState state) {
-    return state.animal.fold(
-      () => Text(AppLocalizations.of(context)!.loading),
-      (some) => some.fold(
-        (failure) => Text(AppLocalizations.of(context)!.error),
-        (animal) => Text(animal.name),
-      ),
-    );
+    if (state is AnimalLoadError) {
+      return Text(AppLocalizations.of(context)!.error);
+    } else if (state is AnimalLoaded) {
+      return Text(state.animal.name);
+    }
+    return Text(AppLocalizations.of(context)!.loading);
   }
 
   Widget _body(BuildContext context, AnimalState state) {
-    return state.animal.fold(
-      () => _loadingState(),
-      (some) => some.fold(
-        (failure) => _errorState(context, failure),
-        (animal) => _successState(context, animal),
-      ),
-    );
+    if (state is AnimalLoadError) {
+      return _errorState(context, state.failure);
+    } else if (state is AnimalLoaded) {
+      return _successState(context, state.animal);
+    }
+    return _loadingState();
   }
 
   Widget _loadingState() => const Center(

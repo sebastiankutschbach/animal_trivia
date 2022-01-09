@@ -1,45 +1,44 @@
 import 'package:animal_trivia/application/animal/animal_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
-import 'package:animal_trivia/domain/i_animal_repository.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
-import 'package:animal_trivia/infrastructure/translation/translate_service.dart';
 import 'package:animal_trivia/injection.dart';
 import 'package:animal_trivia/presentation/pages/trivia_page.dart';
-import 'package:dartz/dartz.dart';
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../infrastructure/repository/animal/animal_dto_test.dart';
-import 'trivia_page_test.mocks.dart';
 
-@GenerateMocks([IAnimalRepository, TranslateService])
+class MockAnimalBloc extends Mock implements AnimalBloc {}
+
 main() {
   final Animal defaultAnimal =
       AnimalDto.fromJson(sampleAnimalResponse).toDomain();
 
   Widget _createApp({Failure? failure, Animal? animal}) {
-    final animalRepository = MockIAnimalRepository();
-    final mockTranslateService = MockTranslateService();
-
-    when(animalRepository.getRandonAnimal()).thenAnswer(
-        (_) async => animal != null ? right(animal) : left(failure!));
-    when(mockTranslateService.translate(any,
-            from: anyNamed('from'), to: anyNamed('to')))
-        .thenAnswer(
-            (invocation) async => right(invocation.positionalArguments.first));
-
-    final animalBloc = AnimalBloc(
-      animalRepository,
-      mockTranslateService,
-    );
+    final animalBloc = MockAnimalBloc();
+    if (failure != null) {
+      whenListen(
+        animalBloc,
+        Stream.fromIterable(
+          [AnimalLoadError(failure)],
+        ),
+      );
+    } else {
+      whenListen(
+        animalBloc,
+        Stream.fromIterable(
+          [AnimalLoaded(animal!)],
+        ),
+      );
+    }
     getIt.allowReassignment = true;
-    getIt.registerSingleton(animalBloc);
+    getIt.registerSingleton<AnimalBloc>(animalBloc);
 
     return const MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -56,16 +55,6 @@ main() {
       ),
       findsOneWidget,
     );
-  }
-
-  _findTextInListTile(String listTileTitle, String text) {
-    final tile = find
-        .byType(ListTile)
-        .evaluate()
-        .map((e) => e as ListTile)
-        .where((ListTile tile) =>
-            tile.title is Text && (tile.title as Text).data == listTileTitle);
-    expect((tile.first.title as Text).data!.contains(text), true);
   }
 
   group('loading state', () {

@@ -1,11 +1,31 @@
 part of 'animal_bloc.dart';
 
-@freezed
-class AnimalState with _$AnimalState {
-  factory AnimalState({required Option<Either<Failure, Animal>> animal}) =
-      _AnimalState;
+abstract class AnimalState extends Equatable {}
 
-  factory AnimalState.initial() => AnimalState(
-        animal: none(),
-      );
+class AnimalInitial extends AnimalState {
+  @override
+  List<Object?> get props => [];
+}
+
+class AnimalLoading extends AnimalState {
+  @override
+  List<Object?> get props => [];
+}
+
+class AnimalLoadError extends AnimalState {
+  final Failure failure;
+
+  AnimalLoadError(this.failure);
+
+  @override
+  List<Object?> get props => [failure];
+}
+
+class AnimalLoaded extends AnimalState {
+  final Animal animal;
+
+  AnimalLoaded(this.animal);
+
+  @override
+  List<Object?> get props => [animal];
 }
