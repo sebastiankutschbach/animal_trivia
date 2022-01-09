@@ -20,6 +20,7 @@ class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
   AnimalBloc(this.animalRepository, this.translateService)
       : super(AnimalState.initial()) {
     on<RandomAnimalRequested>((event, emit) async {
+      emit(AnimalState.initial());
       await animalRepository.getRandonAnimal().then(
             (animal) => animal.fold(
               (l) => emit(

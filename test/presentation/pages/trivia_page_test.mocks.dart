@@ -55,11 +55,13 @@ class MockTranslateService extends _i1.Mock implements _i8.TranslateService {
       (super.noSuchMethod(Invocation.getter(#client), returnValue: _FakeDio_1())
           as _i3.Dio);
   @override
-  _i5.Future<_i2.Either<_i6.Failure, String>> translate(String? s,
-          {String? from, String? to}) =>
+  _i5.Future<_i2.Either<_i6.Failure, List<String>>> translate(
+          List<String>? strings,
+          {String? from,
+          String? to}) =>
       (super.noSuchMethod(
-              Invocation.method(#translate, [s], {#from: from, #to: to}),
-              returnValue: Future<_i2.Either<_i6.Failure, String>>.value(
-                  _FakeEither_0<_i6.Failure, String>()))
-          as _i5.Future<_i2.Either<_i6.Failure, String>>);
+              Invocation.method(#translate, [strings], {#from: from, #to: to}),
+              returnValue: Future<_i2.Either<_i6.Failure, List<String>>>.value(
+                  _FakeEither_0<_i6.Failure, List<String>>()))
+          as _i5.Future<_i2.Either<_i6.Failure, List<String>>>);
 }
