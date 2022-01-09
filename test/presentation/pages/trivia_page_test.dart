@@ -14,7 +14,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../infrastructure/repository/animal/animal_dto_test.dart';
 
-class MockAnimalBloc extends Mock implements AnimalBloc {}
+class MockAnimalBloc extends MockBloc<AnimalEvent, AnimalState>
+    implements AnimalBloc {}
 
 main() {
   final Animal defaultAnimal =
@@ -22,21 +23,15 @@ main() {
 
   Widget _createApp({Failure? failure, Animal? animal}) {
     final animalBloc = MockAnimalBloc();
+
     if (failure != null) {
-      whenListen(
-        animalBloc,
-        Stream.fromIterable(
-          [AnimalLoadError(failure)],
-        ),
-      );
+      when(() => animalBloc.state).thenAnswer((_) => AnimalLoadError(failure));
+    } else if (animal != null) {
+      when(() => animalBloc.state).thenAnswer((_) => AnimalLoaded(animal));
     } else {
-      whenListen(
-        animalBloc,
-        Stream.fromIterable(
-          [AnimalLoaded(animal!)],
-        ),
-      );
+      when(() => animalBloc.state).thenAnswer((_) => AnimalLoading());
     }
+
     getIt.allowReassignment = true;
     getIt.registerSingleton<AnimalBloc>(animalBloc);
 
@@ -62,9 +57,7 @@ main() {
         (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await tester.pumpWidget(
-          _createApp(
-            failure: Failure(message: 'error'),
-          ),
+          _createApp(),
         );
 
         _findTextInAppBar('Loading');

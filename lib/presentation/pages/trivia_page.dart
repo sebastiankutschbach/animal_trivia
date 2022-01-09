@@ -16,8 +16,7 @@ class TriviaPage extends StatelessWidget {
         ..add(
           const AnimalEvent.randomAnimalRequested(),
         ),
-      child: BlocConsumer<AnimalBloc, AnimalState>(
-        listener: (BuildContext context, AnimalState state) {},
+      child: BlocBuilder<AnimalBloc, AnimalState>(
         builder: (BuildContext context, AnimalState state) => Scaffold(
           appBar: AppBar(
             title: _appBarTitle(context, state),
