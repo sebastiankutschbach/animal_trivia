@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/domain/i_animal_repository.dart';
@@ -40,11 +42,20 @@ class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
 extension Translation on Animal {
   Future<Animal> translatedAndConverted(TranslateService translateService,
       {required String from, required String to}) async {
+    final toBeTranslated = [
+      name,
+      activeTime,
+      aninmalType,
+      habitat,
+      diet,
+      geoRange
+    ];
+    log("Before: $toBeTranslated");
     final List<String> translations = await getTranslationOrFallback(
-        translateService,
-        [name, activeTime, aninmalType, habitat, diet, geoRange],
-        from: from,
-        to: to);
+        translateService, toBeTranslated,
+        from: from, to: to);
+
+    log("After: $translations");
     return copyWith(
       name: translations[0],
       activeTime: translations[1],

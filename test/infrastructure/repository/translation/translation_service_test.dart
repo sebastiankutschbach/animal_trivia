@@ -10,4 +10,12 @@ main() {
     expect(result.isRight(), true);
     expect(result.fold((l) => null, (r) => r), ['Hund', 'Katze', 'Maus']);
   });
+
+  test('can cope with ; in translation', () async {
+    final result = await TranslateService(Dio())
+        .translate(['dog; cat', 'mouse'], from: 'en', to: 'de');
+    expect(result.isLeft(), false);
+    expect(result.isRight(), true);
+    expect(result.fold((l) => null, (r) => r), ['Hund, Katze', 'Maus']);
+  });
 }

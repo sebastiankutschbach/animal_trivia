@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -11,6 +13,8 @@ class TranslateService {
 
   Future<Either<Failure, List<String>>> translate(List<String> strings,
       {required String from, required String to}) async {
+    const separator = '#';
+    final sanitizedString = strings.join(separator).replaceAll(';', ',');
     try {
       final response = await client.get(
           "https://translate.googleapis.com/translate_a/single",
@@ -19,11 +23,12 @@ class TranslateService {
             'sl': from,
             'tl': to,
             'dt': 't',
-            'q': strings.join('#')
+            'q': sanitizedString
           });
+      log("TranslateService: ResponseData: ${response.data}");
       final String data = response.data[0][0][0];
 
-      return right(data.split('#'));
+      return right(data.split(separator));
     } on DioError catch (e) {
       return left(Failure(message: e.message));
     }
