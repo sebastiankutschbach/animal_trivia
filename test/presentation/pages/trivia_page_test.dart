@@ -8,9 +8,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:network_image_mock/network_image_mock.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../infrastructure/repository/animal/animal_dto_test.dart';
 
@@ -55,7 +55,7 @@ main() {
   group('loading state', () {
     testWidgets('shows loading state while loading random animal',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(),
         );
@@ -72,7 +72,7 @@ main() {
   group('error state', () {
     testWidgets('shows error state when loading random animal failed',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(
             failure: Failure(message: 'error'),
@@ -90,7 +90,7 @@ main() {
   group('success state', () {
     testWidgets('shows name of the animal in app bar after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
@@ -101,160 +101,145 @@ main() {
       });
     });
 
-    testWidgets('shows image of the animal after loading',
-        (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
-        await tester.pumpWidget(
-          _createApp(animal: defaultAnimal),
-        );
-
-        await tester.pumpAndSettle();
-
-        final imageFinder = find.byType(Image);
-        expect(imageFinder, findsOneWidget);
-      });
-    });
-
     testWidgets('shows latin name of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.latinName), findsOneWidget);
+        expect(find.text(defaultAnimal.latinName, skipOffstage: false),
+            findsOneWidget);
       });
     });
 
     testWidgets('shows type of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.aninmalType), findsOneWidget);
+        expect(find.text(defaultAnimal.aninmalType, skipOffstage: false),
+            findsOneWidget);
       });
     });
 
     testWidgets('shows active time of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.activeTime), findsOneWidget);
+        expect(find.text(defaultAnimal.activeTime, skipOffstage: false),
+            findsOneWidget);
       });
     });
 
     testWidgets('shows habitat time of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.habitat), findsOneWidget);
+        expect(find.text(defaultAnimal.habitat, skipOffstage: false),
+            findsOneWidget);
       });
     });
 
     testWidgets('shows diet of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.diet), findsOneWidget);
+        expect(
+            find.text(defaultAnimal.diet, skipOffstage: false), findsOneWidget);
       });
     });
 
     testWidgets('shows geo range of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.geoRange), findsOneWidget);
+        expect(find.text(defaultAnimal.geoRange, skipOffstage: false),
+            findsOneWidget);
       });
     });
 
-    testWidgets('shows min length of the animal after loading',
+    testWidgets('shows length of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.lengthMin.toString()), findsOneWidget);
+        expect(
+            find.textContaining(defaultAnimal.lengthMin.toStringAsFixed(2),
+                skipOffstage: false),
+            findsOneWidget);
+
+        expect(
+            find.textContaining(defaultAnimal.lengthMax.toStringAsFixed(2),
+                skipOffstage: false),
+            findsOneWidget);
       });
     });
 
-    testWidgets('shows max length of the animal after loading',
+    testWidgets('shows weight of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.lengthMax.toString()), findsOneWidget);
-      });
-    });
+        expect(
+            find.textContaining(defaultAnimal.weightMin.toStringAsFixed(2),
+                skipOffstage: false),
+            findsOneWidget);
 
-    testWidgets('shows min weight of the animal after loading',
-        (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
-        await tester.pumpWidget(
-          _createApp(animal: defaultAnimal),
-        );
-
-        await tester.pumpAndSettle();
-
-        expect(find.text(defaultAnimal.weightMin.toString()), findsOneWidget);
-      });
-    });
-
-    testWidgets('shows max weight of the animal after loading',
-        (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
-        await tester.pumpWidget(
-          _createApp(animal: defaultAnimal),
-        );
-
-        await tester.pumpAndSettle();
-
-        expect(find.text(defaultAnimal.weightMax.toString()), findsOneWidget);
+        expect(
+            find.textContaining(defaultAnimal.weightMax.toStringAsFixed(2),
+                skipOffstage: false),
+            findsOneWidget);
       });
     });
 
     testWidgets('shows lifespan of the animal after loading',
         (WidgetTester tester) async {
-      mockNetworkImagesFor(() async {
+      await mockNetworkImages(() async {
         await tester.pumpWidget(
           _createApp(animal: defaultAnimal),
         );
 
         await tester.pumpAndSettle();
 
-        expect(find.text(defaultAnimal.lifespan.toString()), findsOneWidget);
+        expect(
+            find.textContaining(defaultAnimal.lifespan.toString(),
+                skipOffstage: false),
+            findsOneWidget);
       });
     });
   });
