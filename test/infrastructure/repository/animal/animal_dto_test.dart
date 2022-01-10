@@ -2,10 +2,12 @@ import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../sample_responses.dart';
+
 main() {
   group('json', () {
     test('parsing', () {
-      final animalDto = AnimalDto.fromJson(sampleAnimalResponse);
+      final animalDto = AnimalDto.fromJson(sampleAnimalResponse1);
 
       expect(animalDto.name, "Siamang");
       expect(animalDto.latinName, "Hylobates syndactylus");
@@ -27,7 +29,7 @@ main() {
 
   group('to domain object', () {
     test('maps dto to domain object', () {
-      final animalDto = AnimalDto.fromJson(sampleAnimalResponse);
+      final animalDto = AnimalDto.fromJson(sampleAnimalResponse1);
       final Animal animal = animalDto.toDomain();
 
       expect(animal.name, "Siamang");
@@ -48,21 +50,3 @@ main() {
     });
   });
 }
-
-final Map<String, dynamic> sampleAnimalResponse = {
-  "name": "Siamang",
-  "latin_name": "Hylobates syndactylus",
-  "animal_type": "Mammal",
-  "active_time": "Diurnal",
-  "length_min": "1.90",
-  "length_max": "2.00",
-  "weight_min": "20",
-  "weight_max": "23",
-  "lifespan": "23",
-  "habitat": "Tropical rainforest",
-  "diet": "Primarily fruit and leaves, some invertebrates",
-  "geo_range": "Malaysia and Sumatra",
-  "image_link":
-      "https://upload.wikimedia.org/wikipedia/commons/a/a4/DPPP_5348.jpg",
-  "id": 162
-};

@@ -16,10 +16,21 @@ class AnimalRepository implements IAnimalRepository {
   AnimalRepository({required this.client});
 
   @override
-  Future<Either<Failure, Animal>> getRandonAnimal() async {
+  Future<Either<Failure, List<Animal>>> getRandonAnimals(
+      {int noOfAnimals = 1}) async {
+    if (noOfAnimals > 10) {
+      return left(
+        Failure(message: 'Batch requested is limited to max. 10 animals'),
+      );
+    }
     try {
-      final response = await client.get(getRandomAnimalPath);
-      return right(AnimalDto.fromJson(response.data).toDomain());
+      final response = await client.get('$getRandomAnimalPath/$noOfAnimals');
+      List<Animal> animals = List<Animal>.from(
+        response.data.map(
+          (elem) => AnimalDto.fromJson(elem).toDomain(),
+        ),
+      );
+      return right(animals);
     } on DioError catch (e) {
       return left(
         Failure(message: e.message),

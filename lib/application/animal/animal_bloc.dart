@@ -23,14 +23,13 @@ class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
       : super(AnimalInitial()) {
     on<RandomAnimalRequested>((event, emit) async {
       emit(AnimalLoading());
-      await animalRepository.getRandonAnimal().then(
+      await animalRepository.getRandonAnimals().then(
             (animal) => animal.fold(
               (failure) => emit(AnimalLoadError(failure)),
               (animal) async {
-                final translatedAnimal = await animal.translatedAndConverted(
-                    translateService,
-                    from: 'en',
-                    to: 'de');
+                final translatedAnimal = await animal.first
+                    .translatedAndConverted(translateService,
+                        from: 'en', to: 'de');
                 emit(AnimalLoaded(translatedAnimal));
               },
             ),

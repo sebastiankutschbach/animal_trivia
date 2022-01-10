@@ -12,14 +12,14 @@ import 'package:mocktail/mocktail.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
-import '../../infrastructure/repository/animal/animal_dto_test.dart';
+import '../../sample_responses.dart';
 
 class MockAnimalBloc extends MockBloc<AnimalEvent, AnimalState>
     implements AnimalBloc {}
 
 main() {
   final Animal defaultAnimal =
-      AnimalDto.fromJson(sampleAnimalResponse).toDomain();
+      AnimalDto.fromJson(sampleAnimalResponse1).toDomain();
 
   Widget _createApp({Failure? failure, Animal? animal}) {
     final animalBloc = MockAnimalBloc();

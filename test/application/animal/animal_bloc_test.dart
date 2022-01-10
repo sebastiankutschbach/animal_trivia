@@ -8,7 +8,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../infrastructure/repository/animal/animal_dto_test.dart';
+import '../../sample_responses.dart';
 
 class MockIAnimalRepository extends Mock implements IAnimalRepository {}
 
@@ -16,14 +16,14 @@ class MockTranslateService extends Mock implements TranslateService {}
 
 main() {
   final Animal defaultAnimal =
-      AnimalDto.fromJson(sampleAnimalResponse).toDomain();
+      AnimalDto.fromJson(sampleAnimalResponse1).toDomain();
   blocTest<AnimalBloc, AnimalState>(
     'emits [Loading, Loaded] when AnimalEvent.randomAnimalRequested() is added and loading was successful',
     build: () {
       final IAnimalRepository animalRepository = MockIAnimalRepository();
       final TranslateService translateService = MockTranslateService();
-      when(() => animalRepository.getRandonAnimal())
-          .thenAnswer((_) async => right(defaultAnimal));
+      when(() => animalRepository.getRandonAnimals())
+          .thenAnswer((_) async => right([defaultAnimal]));
       when(
         () => translateService.translate(
           any(),
@@ -46,7 +46,7 @@ main() {
       final IAnimalRepository animalRepository = MockIAnimalRepository();
       final TranslateService translateService = MockTranslateService();
 
-      when(() => animalRepository.getRandonAnimal())
+      when(() => animalRepository.getRandonAnimals())
           .thenAnswer((_) async => left(failure));
       when(
         () => translateService.translate(
