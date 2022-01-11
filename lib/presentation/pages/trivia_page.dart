@@ -2,6 +2,7 @@ import 'package:animal_trivia/application/animal/animal_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/injection.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -92,21 +93,14 @@ class TriviaPage extends StatelessWidget {
   Widget _successStatePortrait(BuildContext context, Animal animal) =>
       _detailsListView(context, animal, withImage: true);
 
-  Widget _animalImage(BuildContext context, Animal animal) => Image.network(
-        animal.imageLink.toString(),
-        cacheHeight: MediaQuery.of(context).size.height.toInt(),
-        loadingBuilder: (BuildContext context, Widget child,
-            ImageChunkEvent? loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Center(
-            child: CircularProgressIndicator(
-              value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
-                  : null,
-            ),
-          );
-        },
+  Widget _animalImage(BuildContext context, Animal animal) =>
+      CachedNetworkImage(
+        imageUrl: animal.imageLink.toString(),
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            downloadProgress.progress == null
+                ? Container()
+                : LinearProgressIndicator(value: downloadProgress.progress),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       );
 
   Widget _detailsListView(BuildContext context, Animal animal,
