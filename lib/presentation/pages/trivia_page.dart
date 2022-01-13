@@ -1,4 +1,4 @@
-import 'package:animal_trivia/application/animal/animal_bloc.dart';
+import 'package:animal_trivia/application/animal/trivia_page_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/injection.dart';
@@ -12,13 +12,13 @@ class TriviaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AnimalBloc>(
-      create: (context) => getIt<AnimalBloc>()
+    return BlocProvider<TriviaPageBloc>(
+      create: (context) => getIt<TriviaPageBloc>()
         ..add(
-          const AnimalEvent.randomAnimalRequested(),
+          const TriviaPageEvent.randomAnimalRequested(),
         ),
-      child: BlocBuilder<AnimalBloc, AnimalState>(
-        builder: (BuildContext context, AnimalState state) => Scaffold(
+      child: BlocBuilder<TriviaPageBloc, TriviaPageState>(
+        builder: (BuildContext context, TriviaPageState state) => Scaffold(
           appBar: AppBar(
             title: _appBarTitle(context, state),
           ),
@@ -28,7 +28,7 @@ class TriviaPage extends StatelessWidget {
     );
   }
 
-  Widget _appBarTitle(BuildContext context, AnimalState state) {
+  Widget _appBarTitle(BuildContext context, TriviaPageState state) {
     if (state is AnimalLoadError) {
       return Text(AppLocalizations.of(context)!.error);
     } else if (state is AnimalLoaded) {
@@ -37,7 +37,7 @@ class TriviaPage extends StatelessWidget {
     return Text(AppLocalizations.of(context)!.loading);
   }
 
-  Widget _body(BuildContext context, AnimalState state) {
+  Widget _body(BuildContext context, TriviaPageState state) {
     if (state is AnimalLoadError) {
       return _errorState(context, state.failure);
     } else if (state is AnimalLoaded) {
@@ -69,7 +69,7 @@ class TriviaPage extends StatelessWidget {
   Widget _successState(BuildContext context, Animal animal) => Padding(
         padding: const EdgeInsets.all(8.0),
         child: RefreshIndicator(
-          onRefresh: () async => context.read<AnimalBloc>().add(
+          onRefresh: () async => context.read<TriviaPageBloc>().add(
                 const RandomAnimalRequested(),
               ),
           child: MediaQuery.of(context).orientation == Orientation.portrait

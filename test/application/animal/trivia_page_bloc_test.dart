@@ -1,4 +1,4 @@
-import 'package:animal_trivia/application/animal/animal_bloc.dart';
+import 'package:animal_trivia/application/animal/trivia_page_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/domain/i_animal_repository.dart';
@@ -17,7 +17,7 @@ class MockTranslateService extends Mock implements TranslateService {}
 main() {
   final Animal defaultAnimal =
       AnimalDto.fromJson(sampleAnimalResponse1).toDomain();
-  blocTest<AnimalBloc, AnimalState>(
+  blocTest<TriviaPageBloc, TriviaPageState>(
     'emits [Loading, Loaded] when AnimalEvent.randomAnimalRequested() is added and loading was successful',
     build: () {
       final IAnimalRepository animalRepository = MockIAnimalRepository();
@@ -33,14 +33,15 @@ main() {
       ).thenAnswer(
         (invocation) async => right(invocation.positionalArguments.first),
       );
-      return AnimalBloc(animalRepository, translateService);
+      return TriviaPageBloc(animalRepository, translateService);
     },
-    act: (bloc) => bloc.add(const AnimalEvent.randomAnimalRequested()),
-    expect: () => <AnimalState>[AnimalLoading(), AnimalLoaded(defaultAnimal)],
+    act: (bloc) => bloc.add(const TriviaPageEvent.randomAnimalRequested()),
+    expect: () =>
+        <TriviaPageState>[AnimalLoading(), AnimalLoaded(defaultAnimal)],
   );
 
   final Failure failure = Failure(message: 'message');
-  blocTest<AnimalBloc, AnimalState>(
+  blocTest<TriviaPageBloc, TriviaPageState>(
     'emits [Loading, LoadError] when AnimalEvent.randomAnimalRequested() is added and loading was NOT successful',
     build: () {
       final IAnimalRepository animalRepository = MockIAnimalRepository();
@@ -57,9 +58,9 @@ main() {
       ).thenAnswer(
         (invocation) async => right(invocation.positionalArguments.first),
       );
-      return AnimalBloc(animalRepository, translateService);
+      return TriviaPageBloc(animalRepository, translateService);
     },
-    act: (bloc) => bloc.add(const AnimalEvent.randomAnimalRequested()),
-    expect: () => <AnimalState>[AnimalLoading(), AnimalLoadError(failure)],
+    act: (bloc) => bloc.add(const TriviaPageEvent.randomAnimalRequested()),
+    expect: () => <TriviaPageState>[AnimalLoading(), AnimalLoadError(failure)],
   );
 }

@@ -8,7 +8,7 @@ import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/animal/animal_bloc.dart' as _i7;
+import 'application/animal/trivia_page_bloc.dart' as _i7;
 import 'domain/i_animal_repository.dart' as _i4;
 import 'infrastructure/core/dio_module.dart' as _i8;
 import 'infrastructure/repository/animal/animal_repository.dart' as _i5;
@@ -25,7 +25,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i4.IAnimalRepository>(
       () => _i5.AnimalRepository(client: get<_i3.Dio>()));
   gh.factory<_i6.TranslateService>(() => _i6.TranslateService(get<_i3.Dio>()));
-  gh.factory<_i7.AnimalBloc>(() => _i7.AnimalBloc(
+  gh.factory<_i7.TriviaPageBloc>(() => _i7.TriviaPageBloc(
       get<_i4.IAnimalRepository>(), get<_i6.TranslateService>()));
   return get;
 }

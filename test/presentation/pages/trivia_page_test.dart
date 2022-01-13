@@ -1,4 +1,4 @@
-import 'package:animal_trivia/application/animal/animal_bloc.dart';
+import 'package:animal_trivia/application/animal/trivia_page_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
@@ -14,26 +14,27 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../sample_responses.dart';
 
-class MockAnimalBloc extends MockBloc<AnimalEvent, AnimalState>
-    implements AnimalBloc {}
+class MockTriviaPageBloc extends MockBloc<TriviaPageEvent, TriviaPageState>
+    implements TriviaPageBloc {}
 
 main() {
   final Animal defaultAnimal =
       AnimalDto.fromJson(sampleAnimalResponse1).toDomain();
 
   Widget _createApp({Failure? failure, Animal? animal}) {
-    final animalBloc = MockAnimalBloc();
+    final triviaPageBloc = MockTriviaPageBloc();
 
     if (failure != null) {
-      when(() => animalBloc.state).thenAnswer((_) => AnimalLoadError(failure));
+      when(() => triviaPageBloc.state)
+          .thenAnswer((_) => AnimalLoadError(failure));
     } else if (animal != null) {
-      when(() => animalBloc.state).thenAnswer((_) => AnimalLoaded(animal));
+      when(() => triviaPageBloc.state).thenAnswer((_) => AnimalLoaded(animal));
     } else {
-      when(() => animalBloc.state).thenAnswer((_) => AnimalLoading());
+      when(() => triviaPageBloc.state).thenAnswer((_) => AnimalLoading());
     }
 
     getIt.allowReassignment = true;
-    getIt.registerSingleton<AnimalBloc>(animalBloc);
+    getIt.registerSingleton<TriviaPageBloc>(triviaPageBloc);
 
     return const MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,

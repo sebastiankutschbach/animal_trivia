@@ -9,17 +9,17 @@ import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'animal_event.dart';
-part 'animal_state.dart';
-part 'animal_bloc.freezed.dart';
+part 'trivia_page_event.dart';
+part 'trivia_page_state.dart';
+part 'trivia_page_bloc.freezed.dart';
 
 @Injectable()
-class AnimalBloc extends Bloc<AnimalEvent, AnimalState> {
+class TriviaPageBloc extends Bloc<TriviaPageEvent, TriviaPageState> {
   final IAnimalRepository animalRepository;
 
   final TranslateService translateService;
 
-  AnimalBloc(this.animalRepository, this.translateService)
+  TriviaPageBloc(this.animalRepository, this.translateService)
       : super(AnimalInitial()) {
     on<RandomAnimalRequested>((event, emit) async {
       emit(AnimalLoading());

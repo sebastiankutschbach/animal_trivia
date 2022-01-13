@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'animal_bloc.dart';
+part of 'trivia_page_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$AnimalEventTearOff {
-  const _$AnimalEventTearOff();
+class _$TriviaPageEventTearOff {
+  const _$TriviaPageEventTearOff();
 
   RandomAnimalRequested randomAnimalRequested() {
     return const RandomAnimalRequested();
@@ -23,10 +23,10 @@ class _$AnimalEventTearOff {
 }
 
 /// @nodoc
-const $AnimalEvent = _$AnimalEventTearOff();
+const $TriviaPageEvent = _$TriviaPageEventTearOff();
 
 /// @nodoc
-mixin _$AnimalEvent {
+mixin _$TriviaPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() randomAnimalRequested,
@@ -63,19 +63,20 @@ mixin _$AnimalEvent {
 }
 
 /// @nodoc
-abstract class $AnimalEventCopyWith<$Res> {
-  factory $AnimalEventCopyWith(
-          AnimalEvent value, $Res Function(AnimalEvent) then) =
-      _$AnimalEventCopyWithImpl<$Res>;
+abstract class $TriviaPageEventCopyWith<$Res> {
+  factory $TriviaPageEventCopyWith(
+          TriviaPageEvent value, $Res Function(TriviaPageEvent) then) =
+      _$TriviaPageEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AnimalEventCopyWithImpl<$Res> implements $AnimalEventCopyWith<$Res> {
-  _$AnimalEventCopyWithImpl(this._value, this._then);
+class _$TriviaPageEventCopyWithImpl<$Res>
+    implements $TriviaPageEventCopyWith<$Res> {
+  _$TriviaPageEventCopyWithImpl(this._value, this._then);
 
-  final AnimalEvent _value;
+  final TriviaPageEvent _value;
   // ignore: unused_field
-  final $Res Function(AnimalEvent) _then;
+  final $Res Function(TriviaPageEvent) _then;
 }
 
 /// @nodoc
@@ -87,7 +88,7 @@ abstract class $RandomAnimalRequestedCopyWith<$Res> {
 
 /// @nodoc
 class _$RandomAnimalRequestedCopyWithImpl<$Res>
-    extends _$AnimalEventCopyWithImpl<$Res>
+    extends _$TriviaPageEventCopyWithImpl<$Res>
     implements $RandomAnimalRequestedCopyWith<$Res> {
   _$RandomAnimalRequestedCopyWithImpl(
       RandomAnimalRequested _value, $Res Function(RandomAnimalRequested) _then)
@@ -104,7 +105,7 @@ class _$RandomAnimalRequested implements RandomAnimalRequested {
 
   @override
   String toString() {
-    return 'AnimalEvent.randomAnimalRequested()';
+    return 'TriviaPageEvent.randomAnimalRequested()';
   }
 
   @override
@@ -174,6 +175,6 @@ class _$RandomAnimalRequested implements RandomAnimalRequested {
   }
 }
 
-abstract class RandomAnimalRequested implements AnimalEvent {
+abstract class RandomAnimalRequested implements TriviaPageEvent {
   const factory RandomAnimalRequested() = _$RandomAnimalRequested;
 }
