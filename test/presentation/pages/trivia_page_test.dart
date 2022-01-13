@@ -4,7 +4,6 @@ import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
 import 'package:animal_trivia/injection.dart';
 import 'package:animal_trivia/presentation/pages/trivia_page.dart';
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -12,10 +11,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
+import '../../mocks.dart';
 import '../../sample_responses.dart';
-
-class MockTriviaPageBloc extends MockBloc<TriviaPageEvent, TriviaPageState>
-    implements TriviaPageBloc {}
 
 main() {
   final Animal defaultAnimal =

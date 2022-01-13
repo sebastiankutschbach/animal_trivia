@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   BlocOverrides.runZoned(() {
     configureDependencies();
-    runApp(const AnimalTriviaApp());
+    runApp(AnimalTriviaApp());
   }, blocObserver: MyBlocObserver());
 }
 
