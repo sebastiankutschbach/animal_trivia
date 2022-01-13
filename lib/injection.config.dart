@@ -8,7 +8,7 @@ import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/animal/trivia_page_bloc.dart' as _i7;
+import 'application/trivia_page/trivia_page_bloc.dart' as _i7;
 import 'domain/i_animal_repository.dart' as _i4;
 import 'infrastructure/core/dio_module.dart' as _i8;
 import 'infrastructure/repository/animal/animal_repository.dart' as _i5;

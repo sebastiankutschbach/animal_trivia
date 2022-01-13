@@ -1,5 +1,5 @@
 import 'package:animal_trivia/app_router.dart';
-import 'package:animal_trivia/application/animal/trivia_page_bloc.dart';
+import 'package:animal_trivia/application/trivia_page/trivia_page_bloc.dart';
 import 'package:animal_trivia/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

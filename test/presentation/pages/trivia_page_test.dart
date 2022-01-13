@@ -1,4 +1,4 @@
-import 'package:animal_trivia/application/animal/trivia_page_bloc.dart';
+import 'package:animal_trivia/application/trivia_page/trivia_page_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
