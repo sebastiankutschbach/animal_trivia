@@ -37,7 +37,7 @@ main() {
     },
     act: (bloc) => bloc.add(const TriviaPageEvent.randomAnimalRequested()),
     expect: () =>
-        <TriviaPageState>[AnimalLoading(), AnimalLoaded(defaultAnimal)],
+        <TriviaPageState>[TriviaPageLoading(), TriviaPageLoaded(defaultAnimal)],
   );
 
   final Failure failure = Failure(message: 'message');
@@ -61,6 +61,7 @@ main() {
       return TriviaPageBloc(animalRepository, translateService);
     },
     act: (bloc) => bloc.add(const TriviaPageEvent.randomAnimalRequested()),
-    expect: () => <TriviaPageState>[AnimalLoading(), AnimalLoadError(failure)],
+    expect: () =>
+        <TriviaPageState>[TriviaPageLoading(), TriviaPageError(failure)],
   );
 }

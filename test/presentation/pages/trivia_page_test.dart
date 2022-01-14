@@ -25,11 +25,12 @@ main() {
 
     if (failure != null) {
       when(() => triviaPageBloc.state)
-          .thenAnswer((_) => AnimalLoadError(failure));
+          .thenAnswer((_) => TriviaPageError(failure));
     } else if (animal != null) {
-      when(() => triviaPageBloc.state).thenAnswer((_) => AnimalLoaded(animal));
+      when(() => triviaPageBloc.state)
+          .thenAnswer((_) => TriviaPageLoaded(animal));
     } else {
-      when(() => triviaPageBloc.state).thenAnswer((_) => AnimalLoading());
+      when(() => triviaPageBloc.state).thenAnswer((_) => TriviaPageLoading());
     }
 
     getIt.allowReassignment = true;

@@ -20,17 +20,17 @@ class TriviaPageBloc extends Bloc<TriviaPageEvent, TriviaPageState> {
   final TranslateService translateService;
 
   TriviaPageBloc(this.animalRepository, this.translateService)
-      : super(AnimalInitial()) {
+      : super(TriviaPageInitial()) {
     on<RandomAnimalRequested>((event, emit) async {
-      emit(AnimalLoading());
+      emit(TriviaPageLoading());
       await animalRepository.getRandonAnimals().then(
             (animal) => animal.fold(
-              (failure) => emit(AnimalLoadError(failure)),
+              (failure) => emit(TriviaPageError(failure)),
               (animal) async {
                 final translatedAnimal = await animal.first
                     .translatedAndConverted(translateService,
                         from: 'en', to: 'de');
-                emit(AnimalLoaded(translatedAnimal));
+                emit(TriviaPageLoaded(translatedAnimal));
               },
             ),
           );

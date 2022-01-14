@@ -2,29 +2,29 @@ part of 'trivia_page_bloc.dart';
 
 abstract class TriviaPageState extends Equatable {}
 
-class AnimalInitial extends TriviaPageState {
+class TriviaPageInitial extends TriviaPageState {
   @override
   List<Object?> get props => [];
 }
 
-class AnimalLoading extends TriviaPageState {
+class TriviaPageLoading extends TriviaPageState {
   @override
   List<Object?> get props => [];
 }
 
-class AnimalLoadError extends TriviaPageState {
+class TriviaPageError extends TriviaPageState {
   final Failure failure;
 
-  AnimalLoadError(this.failure);
+  TriviaPageError(this.failure);
 
   @override
   List<Object?> get props => [failure];
 }
 
-class AnimalLoaded extends TriviaPageState {
+class TriviaPageLoaded extends TriviaPageState {
   final Animal animal;
 
-  AnimalLoaded(this.animal);
+  TriviaPageLoaded(this.animal);
 
   @override
   List<Object?> get props => [animal];

@@ -13,7 +13,7 @@ main() {
 
   setUp(() {
     final triviaPageBloc = MockTriviaPageBloc();
-    when(() => triviaPageBloc.state).thenAnswer((_) => AnimalLoading());
+    when(() => triviaPageBloc.state).thenAnswer((_) => TriviaPageLoading());
     getIt.allowReassignment = true;
     getIt.registerSingleton<TriviaPageBloc>(triviaPageBloc);
     _appRouter = AppRouter();

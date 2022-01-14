@@ -27,12 +27,12 @@ class TriviaPage extends StatelessWidget {
 
   Widget _scaffold(BuildContext context, TriviaPageState state) {
     switch (state.runtimeType) {
-      case AnimalLoaded:
-        return _successState(context, (state as AnimalLoaded).animal);
-      case AnimalLoadError:
-        return ErrorScaffold((state as AnimalLoadError).failure);
-      case AnimalInitial:
-      case AnimalLoading:
+      case TriviaPageLoaded:
+        return _successState(context, (state as TriviaPageLoaded).animal);
+      case TriviaPageError:
+        return ErrorScaffold((state as TriviaPageError).failure);
+      case TriviaPageInitial:
+      case TriviaPageLoading:
       default:
         return const LoadingScaffold();
     }
