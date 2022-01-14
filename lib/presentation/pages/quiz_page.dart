@@ -12,8 +12,10 @@ class QuizPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) =>
-            getIt<QuizPageBloc>()..add(const RandomAnimalsRequested()),
+        create: (context) => getIt<QuizPageBloc>()
+          ..add(
+            const RandomAnimalsRequested(),
+          ),
         child: BlocBuilder<QuizPageBloc, QuizPageState>(
           builder: (context, state) => _scaffold(context, state),
         ),
@@ -33,7 +35,9 @@ class QuizPage extends StatelessWidget {
   }
 
   Widget _successState(BuildContext context, List<Animal> animals) => Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: const Text('Guess the animal!'),
+        ),
         body: Column(
           children: [
             Expanded(

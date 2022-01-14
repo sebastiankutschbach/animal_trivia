@@ -4,6 +4,8 @@ import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
 import 'package:animal_trivia/injection.dart';
 import 'package:animal_trivia/presentation/pages/trivia_page.dart';
+import 'package:animal_trivia/presentation/widgets/error_scaffold.dart';
+import 'package:animal_trivia/presentation/widgets/loading_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -58,11 +60,7 @@ main() {
           _createApp(),
         );
 
-        _findTextInAppBar('Loading');
-        expect(find.byType(CircularProgressIndicator), findsOneWidget);
-        await tester.pump(
-          const Duration(seconds: 1),
-        );
+        expect(find.byType(LoadingScaffold), findsOneWidget);
       });
     });
   });
@@ -77,10 +75,7 @@ main() {
           ),
         );
 
-        await tester.pumpAndSettle();
-
-        _findTextInAppBar('Error');
-        expect(find.byIcon(Icons.error), findsOneWidget);
+        expect(find.byType(ErrorScaffold), findsOneWidget);
       });
     });
   });
