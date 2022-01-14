@@ -1,11 +1,8 @@
 import 'package:animal_trivia/application/quiz_page/quiz_page_bloc.dart';
-import 'package:animal_trivia/application/trivia_page/trivia_page_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
-import 'package:animal_trivia/infrastructure/repository/animal/animal_dto.dart';
 import 'package:animal_trivia/injection.dart';
 import 'package:animal_trivia/presentation/pages/quiz_page.dart';
-import 'package:animal_trivia/presentation/pages/trivia_page.dart';
 import 'package:animal_trivia/presentation/widgets/error_scaffold.dart';
 import 'package:animal_trivia/presentation/widgets/loading_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +13,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../mocks.dart';
-import '../../sample_responses.dart';
 
 main() {
-  final List<Animal> defaultAnimals = List<Animal>.from(
-      sampleAnimalBatchResponse.map(
-          (animalResponse) => AnimalDto.fromJson(animalResponse).toDomain()));
-
   Widget _createApp({Failure? failure, List<Animal> animals = const []}) {
     final quizPageBloc = MockQuizPageBloc();
 

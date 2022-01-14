@@ -8,11 +8,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../mocks.dart';
 import '../../sample_responses.dart';
-
-class MockIAnimalRepository extends Mock implements IAnimalRepository {}
-
-class MockTranslateService extends Mock implements TranslateService {}
 
 main() {
   final Animal defaultAnimal =
