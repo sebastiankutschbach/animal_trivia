@@ -1,7 +1,8 @@
 import 'package:animal_trivia/application/trivia_page/trivia_page_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
-import 'package:animal_trivia/domain/failure.dart';
 import 'package:animal_trivia/injection.dart';
+import 'package:animal_trivia/presentation/widgets/error_scaffold.dart';
+import 'package:animal_trivia/presentation/widgets/loading_scaffold.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,63 +19,39 @@ class TriviaPage extends StatelessWidget {
           const TriviaPageEvent.randomAnimalRequested(),
         ),
       child: BlocBuilder<TriviaPageBloc, TriviaPageState>(
-        builder: (BuildContext context, TriviaPageState state) => Scaffold(
-          appBar: AppBar(
-            title: _appBarTitle(context, state),
-          ),
-          body: _body(context, state),
-        ),
+        builder: (BuildContext context, TriviaPageState state) =>
+            _scaffold(context, state),
       ),
     );
   }
 
-  Widget _appBarTitle(BuildContext context, TriviaPageState state) {
-    if (state is AnimalLoadError) {
-      return Text(AppLocalizations.of(context)!.error);
-    } else if (state is AnimalLoaded) {
-      return Text(state.animal.name);
+  Widget _scaffold(BuildContext context, TriviaPageState state) {
+    switch (state.runtimeType) {
+      case AnimalLoaded:
+        return _successState(context, (state as AnimalLoaded).animal);
+      case AnimalLoadError:
+        return ErrorScaffold((state as AnimalLoadError).failure);
+      case AnimalInitial:
+      case AnimalLoading:
+      default:
+        return const LoadingScaffold();
     }
-    return Text(AppLocalizations.of(context)!.loading);
   }
 
-  Widget _body(BuildContext context, TriviaPageState state) {
-    if (state is AnimalLoadError) {
-      return _errorState(context, state.failure);
-    } else if (state is AnimalLoaded) {
-      return _successState(context, state.animal);
-    }
-    return _loadingState();
-  }
-
-  Widget _loadingState() => const Center(
-        child: CircularProgressIndicator(),
-      );
-
-  Widget _errorState(BuildContext context, Failure failure) => Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Icon(
-            Icons.error,
-            size: 40,
-            color: Colors.red,
+  Widget _successState(BuildContext context, Animal animal) => Scaffold(
+        appBar: AppBar(
+          title: Text(animal.name),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RefreshIndicator(
+            onRefresh: () async => context.read<TriviaPageBloc>().add(
+                  const RandomAnimalRequested(),
+                ),
+            child: MediaQuery.of(context).orientation == Orientation.portrait
+                ? _successStatePortrait(context, animal)
+                : _successStateLandscape(context, animal),
           ),
-          Text(AppLocalizations.of(context)!.errorLoadingAnimal +
-              '\n' +
-              failure.message),
-        ],
-      ));
-
-  Widget _successState(BuildContext context, Animal animal) => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: RefreshIndicator(
-          onRefresh: () async => context.read<TriviaPageBloc>().add(
-                const RandomAnimalRequested(),
-              ),
-          child: MediaQuery.of(context).orientation == Orientation.portrait
-              ? _successStatePortrait(context, animal)
-              : _successStateLandscape(context, animal),
         ),
       );
 

@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
               label: const Text("QUIZ"),
               iconData: Icons.quiz,
               onPressed: () => AutoRouter.of(context).push(
-                const QuizRoute(),
+                QuizRoute(),
               ),
             ),
             _homeScreenEntry(
