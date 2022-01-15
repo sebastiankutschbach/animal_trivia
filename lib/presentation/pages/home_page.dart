@@ -17,14 +17,14 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _homeScreenEntry(
-              label: const Text("quiz").tr(),
+              label: Text("quiz".tr().toUpperCase()),
               iconData: Icons.quiz,
               onPressed: () => AutoRouter.of(context).push(
                 const QuizRoute(),
               ),
             ),
             _homeScreenEntry(
-              label: const Text("trivia").tr(),
+              label: Text("trivia".tr().toUpperCase()),
               iconData: Icons.fact_check,
               onPressed: () => AutoRouter.of(context).push(
                 const TriviaRoute(),

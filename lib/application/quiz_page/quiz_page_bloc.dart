@@ -43,7 +43,8 @@ class QuizPageBloc extends Bloc<QuizPageEvent, QuizPageState> {
     });
     on<AnimalSelected>((event, emit) async {
       emit(
-        QuizPageAnimalSelected(animalToGuessIndex == event.index),
+        QuizPageAnimalSelected(animalToGuessIndex == event.index,
+            (state as QuizPageLoaded).animals[animalToGuessIndex]),
       );
       await Future.delayed(
         const Duration(seconds: 1),

@@ -30,7 +30,7 @@ class _QuizPageState extends State<QuizPage> {
         child: BlocConsumer<QuizPageBloc, QuizPageState>(
           listener: (context, state) {
             if (state is QuizPageAnimalSelected) {
-              _showSnackBar(state.result);
+              _showSnackBar(state);
             }
           },
           builder: (context, state) => _scaffold(context, state),
@@ -95,16 +95,18 @@ class _QuizPageState extends State<QuizPage> {
         ),
       );
 
-  _showSnackBar(bool result) => ScaffoldMessenger.of(context).showSnackBar(
+  _showSnackBar(QuizPageAnimalSelected state) =>
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: result
+          content: state.result
               ? Row(
                   children: [
                     const Icon(
                       Icons.check,
                       color: Colors.green,
                     ),
-                    const Text('correctAnswer').tr(),
+                    const Text('correctAnswer').tr(
+                        namedArgs: {'animalName': state.correctAnimal.name}),
                   ],
                 )
               : Row(children: [
@@ -112,7 +114,8 @@ class _QuizPageState extends State<QuizPage> {
                     Icons.dangerous,
                     color: Colors.red,
                   ),
-                  const Text('wrongAnswer').tr(),
+                  const Text('wrongAnswer')
+                      .tr(namedArgs: {'animalName': state.correctAnimal.name}),
                 ]),
         ),
       );

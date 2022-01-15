@@ -32,9 +32,10 @@ class QuizPageLoaded extends QuizPageState {
 
 class QuizPageAnimalSelected extends QuizPageState {
   final bool result;
+  final Animal correctAnimal;
 
-  QuizPageAnimalSelected(this.result);
+  QuizPageAnimalSelected(this.result, this.correctAnimal);
 
   @override
-  List<Object?> get props => [result];
+  List<Object?> get props => [result, correctAnimal];
 }

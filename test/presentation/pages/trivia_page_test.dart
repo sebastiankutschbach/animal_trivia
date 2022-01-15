@@ -16,9 +16,11 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import '../../mocks.dart';
 import '../../sample_responses.dart';
 
-main() {
+main() async {
   final Animal defaultAnimal =
       AnimalDto.fromJson(sampleAnimalResponse1).toDomain();
+
+  await EasyLocalization.ensureInitialized();
 
   Future<Widget> _createApp({Failure? failure, Animal? animal}) async {
     final triviaPageBloc = MockTriviaPageBloc();
@@ -36,8 +38,6 @@ main() {
     getIt.allowReassignment = true;
     getIt.registerSingleton<TriviaPageBloc>(triviaPageBloc);
 
-    WidgetsFlutterBinding.ensureInitialized();
-    await EasyLocalization.ensureInitialized();
     return EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('de', 'DE')],
       path: 'assets/translations',

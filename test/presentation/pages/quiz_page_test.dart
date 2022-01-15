@@ -14,7 +14,9 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../mocks.dart';
 
-main() {
+main() async {
+  await EasyLocalization.ensureInitialized();
+
   Future<Widget> _createApp(
       {Failure? failure, List<Animal> animals = const []}) async {
     final quizPageBloc = MockQuizPageBloc();
@@ -30,8 +32,6 @@ main() {
     getIt.allowReassignment = true;
     getIt.registerSingleton<QuizPageBloc>(quizPageBloc);
 
-    WidgetsFlutterBinding.ensureInitialized();
-    await EasyLocalization.ensureInitialized();
     return EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('de', 'DE')],
       path: 'assets/translations',

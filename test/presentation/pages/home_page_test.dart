@@ -8,8 +8,9 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../mocks.dart';
 
-main() {
+main() async {
   late AppRouter _appRouter;
+  await EasyLocalization.ensureInitialized();
 
   setUp(() {
     final triviaPageBloc = MockTriviaPageBloc();
@@ -20,8 +21,6 @@ main() {
   });
 
   _createApp() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await EasyLocalization.ensureInitialized();
     final app = EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('de', 'DE')],
       path: 'assets/translations',
