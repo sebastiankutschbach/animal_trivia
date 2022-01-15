@@ -28,6 +28,7 @@ class Animal with _$Animal {
   static Future<Animal> translateAndConvert(
       Animal animal, TranslateService translateService,
       {required String from, required String to}) async {
+    log("From: $from, to: $to");
     final toBeTranslated = [
       animal.name,
       animal.activeTime,
@@ -56,6 +57,9 @@ class Animal with _$Animal {
       TranslateService translateService, List<String> texts,
       {required String from, required String to}) async {
     final result = await translateService.translate(texts, from: from, to: to);
-    return result.fold((failure) => texts, (translation) => translation);
+    return result.fold((failure) {
+      log('Failure during translation: $failure');
+      return texts;
+    }, (translation) => translation);
   }
 }
