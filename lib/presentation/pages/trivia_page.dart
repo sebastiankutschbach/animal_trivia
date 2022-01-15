@@ -1,12 +1,12 @@
 import 'package:animal_trivia/application/trivia_page/trivia_page_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/injection.dart';
+import 'package:animal_trivia/presentation/widgets/animal_detail_widget.dart';
 import 'package:animal_trivia/presentation/widgets/error_scaffold.dart';
 import 'package:animal_trivia/presentation/widgets/loading_scaffold.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TriviaPage extends StatelessWidget {
   const TriviaPage({Key? key}) : super(key: key);
@@ -63,12 +63,12 @@ class TriviaPage extends StatelessWidget {
         ),
         Expanded(
           flex: 5,
-          child: _detailsListView(context, animal, withImage: false),
+          child: AnimalDetail(animal: animal, withImage: false),
         ),
       ]);
 
   Widget _successStatePortrait(BuildContext context, Animal animal) =>
-      _detailsListView(context, animal, withImage: true);
+      AnimalDetail(animal: animal, withImage: true);
 
   Widget _animalImage(BuildContext context, Animal animal) =>
       CachedNetworkImage(
@@ -78,61 +78,5 @@ class TriviaPage extends StatelessWidget {
                 ? Container()
                 : LinearProgressIndicator(value: downloadProgress.progress),
         errorWidget: (context, url, error) => const Icon(Icons.error),
-      );
-
-  Widget _detailsListView(BuildContext context, Animal animal,
-          {required bool withImage}) =>
-      ListView(
-        children: [
-          withImage ? _animalImage(context, animal) : Container(),
-          ListTile(
-            leading: const Icon(Icons.title),
-            title: Text(AppLocalizations.of(context)!.latinName),
-            subtitle: Text(animal.latinName),
-          ),
-          ListTile(
-            leading: const Icon(Icons.bug_report),
-            title: Text(AppLocalizations.of(context)!.animalType),
-            subtitle: Text(animal.aninmalType),
-          ),
-          ListTile(
-            leading: const Icon(Icons.timer),
-            title: Text(AppLocalizations.of(context)!.activeTime),
-            subtitle: Text(animal.activeTime),
-          ),
-          ListTile(
-            leading: const Icon(Icons.house),
-            title: Text(AppLocalizations.of(context)!.habitat),
-            subtitle: Text(animal.habitat),
-          ),
-          ListTile(
-            leading: const Icon(Icons.restaurant),
-            title: Text(AppLocalizations.of(context)!.diet),
-            subtitle: Text(animal.diet),
-          ),
-          ListTile(
-            leading: const Icon(Icons.map),
-            title: Text(AppLocalizations.of(context)!.geoRange),
-            subtitle: Text(animal.geoRange),
-          ),
-          ListTile(
-            leading: const Icon(Icons.straighten),
-            title: Text(AppLocalizations.of(context)!.length),
-            subtitle: Text(
-                '${animal.lengthMin.toStringAsFixed(2)} - ${animal.lengthMax.toStringAsFixed(2)} cm'),
-          ),
-          ListTile(
-            leading: const Icon(Icons.fitness_center),
-            title: Text(AppLocalizations.of(context)!.weight),
-            subtitle: Text(
-                '${animal.weightMin.toStringAsFixed(2)} - ${animal.weightMax.toStringAsFixed(2)} kg'),
-          ),
-          ListTile(
-            leading: const Icon(Icons.hourglass_bottom),
-            title: Text(AppLocalizations.of(context)!.lifespan),
-            subtitle: Text(
-                '${animal.lifespan} ${AppLocalizations.of(context)!.years}'),
-          ),
-        ],
       );
 }
