@@ -27,48 +27,15 @@ class TriviaPageBloc extends Bloc<TriviaPageEvent, TriviaPageState> {
             (animal) => animal.fold(
               (failure) => emit(TriviaPageError(failure)),
               (animal) async {
-                final translatedAnimal = await animal.first
-                    .translatedAndConverted(translateService,
-                        from: 'en', to: 'de');
-                emit(TriviaPageLoaded(translatedAnimal));
+                final translatedAnimal = await Animal.translateAndConvert(
+                    animal.first, translateService,
+                    from: 'en', to: 'de');
+                emit(
+                  TriviaPageLoaded(translatedAnimal),
+                );
               },
             ),
           );
     });
-  }
-}
-
-extension Translation on Animal {
-  Future<Animal> translatedAndConverted(TranslateService translateService,
-      {required String from, required String to}) async {
-    final toBeTranslated = [
-      name,
-      activeTime,
-      aninmalType,
-      habitat,
-      diet,
-      geoRange
-    ];
-    log("Before: $toBeTranslated");
-    final List<String> translations = await getTranslationOrFallback(
-        translateService, toBeTranslated,
-        from: from, to: to);
-
-    log("After: $translations");
-    return copyWith(
-      name: translations[0],
-      activeTime: translations[1],
-      aninmalType: translations[2],
-      habitat: translations[3],
-      diet: translations[4],
-      geoRange: translations[5],
-    );
-  }
-
-  Future<List<String>> getTranslationOrFallback(
-      TranslateService translateService, List<String> texts,
-      {required String from, required String to}) async {
-    final result = await translateService.translate(texts, from: from, to: to);
-    return result.fold((failure) => texts, (translation) => translation);
   }
 }
