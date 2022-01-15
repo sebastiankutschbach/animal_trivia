@@ -19,7 +19,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  int _currentlySelectedAnimalIndex = -1;
+  int _currentlySelectedAnimalIndex = 0;
 
   @override
   Widget build(BuildContext context) => BlocProvider(
