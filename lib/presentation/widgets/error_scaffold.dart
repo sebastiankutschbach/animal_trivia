@@ -1,6 +1,6 @@
 import 'package:animal_trivia/domain/failure.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ErrorScaffold extends StatelessWidget {
   final Failure failure;
@@ -22,9 +22,8 @@ class ErrorScaffold extends StatelessWidget {
                 size: 40,
                 color: Colors.red,
               ),
-              Text(AppLocalizations.of(context)!.errorLoadingAnimal +
-                  '\n' +
-                  failure.message),
+              Text('errorLoadingAnimal'
+                  .tr(namedArgs: {'errorMessage': failure.message})),
             ],
           ),
         ),

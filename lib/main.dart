@@ -2,14 +2,25 @@ import 'dart:developer';
 
 import 'package:animal_trivia/injection.dart';
 import 'package:animal_trivia/presentation/animal_trivia_app.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  BlocOverrides.runZoned(() {
-    configureDependencies();
-    runApp(AnimalTriviaApp());
-  }, blocObserver: MyBlocObserver());
+void main() async {
+  BlocOverrides.runZoned(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await EasyLocalization.ensureInitialized();
+      configureDependencies();
+      EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('de')],
+        path: 'assets/translations',
+        fallbackLocale: const Locale('en', 'US'),
+        child: AnimalTriviaApp(),
+      );
+    },
+    blocObserver: MyBlocObserver(),
+  );
 }
 
 class MyBlocObserver extends BlocObserver {

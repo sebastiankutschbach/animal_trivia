@@ -9,6 +9,7 @@ import 'package:animal_trivia/presentation/widgets/loading_scaffold.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({Key? key}) : super(key: key);
@@ -51,7 +52,7 @@ class _QuizPageState extends State<QuizPage> {
 
   Widget _successState(BuildContext context, List<Animal> animals) => Scaffold(
         appBar: AppBar(
-          title: const Text('Guess the animal!'),
+          title: const Text('quizAppBarTitle').tr(),
         ),
         body: Column(
           children: [
@@ -98,20 +99,20 @@ class _QuizPageState extends State<QuizPage> {
         SnackBar(
           content: result
               ? Row(
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.check,
                       color: Colors.green,
                     ),
-                    Text('Correct')
+                    const Text('correctAnswer').tr(),
                   ],
                 )
-              : Row(children: const [
-                  Icon(
+              : Row(children: [
+                  const Icon(
                     Icons.dangerous,
                     color: Colors.red,
                   ),
-                  Text('Wrong'),
+                  const Text('wrongAnswer').tr(),
                 ]),
         ),
       );

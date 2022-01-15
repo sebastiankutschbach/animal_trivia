@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:animal_trivia/domain/animal.dart';
@@ -25,15 +26,13 @@ class QuizPageBloc extends Bloc<QuizPageEvent, QuizPageState> {
       emit(QuizPageLoading());
       await animalRepository.getRandonAnimals(noOfAnimals: 3).then(
             (result) => result.fold((failure) => emit(QuizPageError(failure)),
-                (animals) {
+                (animals) async {
               animalToGuessIndex = Random.secure().nextInt(animals.length - 1);
               final List<Animal> translatedAnimals = await Future.wait(
-                List<Animal>.from(
-                  animals.map(
-                    (animal) async => await Animal.translateAndConvert(
-                        animal, translateService,
-                        from: 'en', to: 'de'),
-                  ),
+                animals.map<Future<Animal>>(
+                  (animal) async => await Animal.translateAndConvert(
+                      animal, translateService,
+                      from: 'en', to: Platform.localeName.split('_').first),
                 ),
               );
               emit(

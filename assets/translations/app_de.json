@@ -2,7 +2,7 @@
     "appTitle": "Tier Fakten",
     "loading": "Lade",
     "error": "Fehler",
-    "errorLoadingAnimal": "Fehler während des Ladens eines zufälligen Tiers:",
+    "errorLoadingAnimal": "Fehler während des Ladens eines zufälligen Tiers:\n{errorMessage}",
     "latinName": "Lateinischer Name",
     "animalType": "Art",
     "diet": "Nahrung",
@@ -12,5 +12,8 @@
     "length": "Größe",
     "weight": "Gewicht",
     "lifespan": "Lebenserwartung",
-    "years": "Jahre"
+    "years": "Jahre",
+    "quiz_app_bar_title": "Errate das Tier!",
+    "correct_answer": "Richtige Antwort! Es ist ein {animalName}.",
+    "wrong_answer": "Falsche Antwort! Es ist ein {animalName}."
 }

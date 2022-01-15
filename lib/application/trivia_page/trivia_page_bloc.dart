@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
@@ -29,7 +29,7 @@ class TriviaPageBloc extends Bloc<TriviaPageEvent, TriviaPageState> {
               (animal) async {
                 final translatedAnimal = await Animal.translateAndConvert(
                     animal.first, translateService,
-                    from: 'en', to: 'de');
+                    from: 'en', to: Platform.localeName.split('_').first);
                 emit(
                   TriviaPageLoaded(translatedAnimal),
                 );

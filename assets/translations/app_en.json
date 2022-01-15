@@ -2,7 +2,7 @@
     "appTitle": "Animal Trivia",
     "loading": "Loading",
     "error": "Error",
-    "errorLoadingAnimal": "Error while retrieving a random animal:",
+    "errorLoadingAnimal": "Error while retrieving a random animal:\n{errorMessage}",
     "latinName": "Latin name",
     "animalType": "Type",
     "diet": "Diet",
@@ -12,5 +12,8 @@
     "length": "Length",
     "weight": "Weight",
     "lifespan": "Lifespan",
-    "years": "Years"
+    "years": "Years",
+    "quiz_app_bar_title": "Guess the animal!",
+    "correct_answer": "Correct Answer! It is a {animalName}.",
+    "wrong_answer": "Wrong Answer! It is a {animalName}."
 }

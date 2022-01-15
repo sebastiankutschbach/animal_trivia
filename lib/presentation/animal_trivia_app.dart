@@ -1,6 +1,6 @@
 import 'package:animal_trivia/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AnimalTriviaApp extends StatelessWidget {
   final _appRouter = AppRouter();
@@ -10,13 +10,13 @@ class AnimalTriviaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
-      title: 'Animal Trivia',
+      title: 'appTitle'.tr(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       routeInformationParser: _appRouter.defaultRouteParser(),
       routerDelegate: _appRouter.delegate(),
     );

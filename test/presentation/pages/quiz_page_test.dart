@@ -5,17 +5,18 @@ import 'package:animal_trivia/injection.dart';
 import 'package:animal_trivia/presentation/pages/quiz_page.dart';
 import 'package:animal_trivia/presentation/widgets/error_scaffold.dart';
 import 'package:animal_trivia/presentation/widgets/loading_scaffold.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 import '../../mocks.dart';
 
 main() {
-  Widget _createApp({Failure? failure, List<Animal> animals = const []}) {
+  Future<Widget> _createApp(
+      {Failure? failure, List<Animal> animals = const []}) async {
     final quizPageBloc = MockQuizPageBloc();
 
     if (failure != null) {
@@ -29,10 +30,15 @@ main() {
     getIt.allowReassignment = true;
     getIt.registerSingleton<QuizPageBloc>(quizPageBloc);
 
-    return const MaterialApp(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: QuizPage(),
+    WidgetsFlutterBinding.ensureInitialized();
+    await EasyLocalization.ensureInitialized();
+    return EasyLocalization(
+      supportedLocales: const [Locale('en', 'US'), Locale('de', 'DE')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en', 'US'),
+      child: const MaterialApp(
+        home: QuizPage(),
+      ),
     );
   }
 
@@ -41,7 +47,7 @@ main() {
         (WidgetTester tester) async {
       await mockNetworkImages(() async {
         await tester.pumpWidget(
-          _createApp(),
+          await _createApp(),
         );
 
         expect(find.byType(LoadingScaffold), findsOneWidget);
@@ -54,7 +60,7 @@ main() {
         (WidgetTester tester) async {
       await mockNetworkImages(() async {
         await tester.pumpWidget(
-          _createApp(
+          await _createApp(
             failure: Failure(message: 'error'),
           ),
         );
