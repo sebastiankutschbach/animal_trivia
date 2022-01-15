@@ -20,6 +20,12 @@ class _$QuizPageEventTearOff {
   RandomAnimalsRequested randomAnimalsRequested() {
     return const RandomAnimalsRequested();
   }
+
+  AnimalSelected animalSelected(int index) {
+    return AnimalSelected(
+      index,
+    );
+  }
 }
 
 /// @nodoc
@@ -30,16 +36,19 @@ mixin _$QuizPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() randomAnimalsRequested,
+    required TResult Function(int index) animalSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? randomAnimalsRequested,
+    TResult Function(int index)? animalSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? randomAnimalsRequested,
+    TResult Function(int index)? animalSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,16 +56,19 @@ mixin _$QuizPageEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(RandomAnimalsRequested value)
         randomAnimalsRequested,
+    required TResult Function(AnimalSelected value) animalSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(RandomAnimalsRequested value)? randomAnimalsRequested,
+    TResult Function(AnimalSelected value)? animalSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RandomAnimalsRequested value)? randomAnimalsRequested,
+    TResult Function(AnimalSelected value)? animalSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,6 +133,7 @@ class _$RandomAnimalsRequested implements RandomAnimalsRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() randomAnimalsRequested,
+    required TResult Function(int index) animalSelected,
   }) {
     return randomAnimalsRequested();
   }
@@ -129,6 +142,7 @@ class _$RandomAnimalsRequested implements RandomAnimalsRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? randomAnimalsRequested,
+    TResult Function(int index)? animalSelected,
   }) {
     return randomAnimalsRequested?.call();
   }
@@ -137,6 +151,7 @@ class _$RandomAnimalsRequested implements RandomAnimalsRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? randomAnimalsRequested,
+    TResult Function(int index)? animalSelected,
     required TResult orElse(),
   }) {
     if (randomAnimalsRequested != null) {
@@ -150,6 +165,7 @@ class _$RandomAnimalsRequested implements RandomAnimalsRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(RandomAnimalsRequested value)
         randomAnimalsRequested,
+    required TResult Function(AnimalSelected value) animalSelected,
   }) {
     return randomAnimalsRequested(this);
   }
@@ -158,6 +174,7 @@ class _$RandomAnimalsRequested implements RandomAnimalsRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(RandomAnimalsRequested value)? randomAnimalsRequested,
+    TResult Function(AnimalSelected value)? animalSelected,
   }) {
     return randomAnimalsRequested?.call(this);
   }
@@ -166,6 +183,7 @@ class _$RandomAnimalsRequested implements RandomAnimalsRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RandomAnimalsRequested value)? randomAnimalsRequested,
+    TResult Function(AnimalSelected value)? animalSelected,
     required TResult orElse(),
   }) {
     if (randomAnimalsRequested != null) {
@@ -177,4 +195,139 @@ class _$RandomAnimalsRequested implements RandomAnimalsRequested {
 
 abstract class RandomAnimalsRequested implements QuizPageEvent {
   const factory RandomAnimalsRequested() = _$RandomAnimalsRequested;
+}
+
+/// @nodoc
+abstract class $AnimalSelectedCopyWith<$Res> {
+  factory $AnimalSelectedCopyWith(
+          AnimalSelected value, $Res Function(AnimalSelected) then) =
+      _$AnimalSelectedCopyWithImpl<$Res>;
+  $Res call({int index});
+}
+
+/// @nodoc
+class _$AnimalSelectedCopyWithImpl<$Res>
+    extends _$QuizPageEventCopyWithImpl<$Res>
+    implements $AnimalSelectedCopyWith<$Res> {
+  _$AnimalSelectedCopyWithImpl(
+      AnimalSelected _value, $Res Function(AnimalSelected) _then)
+      : super(_value, (v) => _then(v as AnimalSelected));
+
+  @override
+  AnimalSelected get _value => super._value as AnimalSelected;
+
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(AnimalSelected(
+      index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AnimalSelected implements AnimalSelected {
+  const _$AnimalSelected(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'QuizPageEvent.animalSelected(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AnimalSelected &&
+            const DeepCollectionEquality().equals(other.index, index));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
+
+  @JsonKey(ignore: true)
+  @override
+  $AnimalSelectedCopyWith<AnimalSelected> get copyWith =>
+      _$AnimalSelectedCopyWithImpl<AnimalSelected>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() randomAnimalsRequested,
+    required TResult Function(int index) animalSelected,
+  }) {
+    return animalSelected(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? randomAnimalsRequested,
+    TResult Function(int index)? animalSelected,
+  }) {
+    return animalSelected?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? randomAnimalsRequested,
+    TResult Function(int index)? animalSelected,
+    required TResult orElse(),
+  }) {
+    if (animalSelected != null) {
+      return animalSelected(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RandomAnimalsRequested value)
+        randomAnimalsRequested,
+    required TResult Function(AnimalSelected value) animalSelected,
+  }) {
+    return animalSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RandomAnimalsRequested value)? randomAnimalsRequested,
+    TResult Function(AnimalSelected value)? animalSelected,
+  }) {
+    return animalSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RandomAnimalsRequested value)? randomAnimalsRequested,
+    TResult Function(AnimalSelected value)? animalSelected,
+    required TResult orElse(),
+  }) {
+    if (animalSelected != null) {
+      return animalSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AnimalSelected implements QuizPageEvent {
+  const factory AnimalSelected(int index) = _$AnimalSelected;
+
+  int get index;
+  @JsonKey(ignore: true)
+  $AnimalSelectedCopyWith<AnimalSelected> get copyWith =>
+      throw _privateConstructorUsedError;
 }

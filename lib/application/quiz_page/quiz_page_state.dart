@@ -29,3 +29,12 @@ class QuizPageLoaded extends QuizPageState {
   @override
   List<Object?> get props => [animals];
 }
+
+class QuizPageAnimalSelected extends QuizPageState {
+  final bool result;
+
+  QuizPageAnimalSelected(this.result);
+
+  @override
+  List<Object?> get props => [result];
+}
