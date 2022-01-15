@@ -13,7 +13,9 @@
     "weight": "Weight",
     "lifespan": "Lifespan",
     "years": "Years",
-    "quiz_app_bar_title": "Guess the animal!",
-    "correct_answer": "Correct Answer! It is a {animalName}.",
-    "wrong_answer": "Wrong Answer! It is a {animalName}."
+    "quizAppBarTitle": "Guess the animal!",
+    "correctAnswer": "Correct Answer! It is a {animalName}.",
+    "wrongAnswer": "Wrong Answer! It is a {animalName}.",
+    "quiz": "Quiz",
+    "trivia": "Trivia"
 }

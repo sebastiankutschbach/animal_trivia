@@ -1,5 +1,6 @@
 import 'package:animal_trivia/app_router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,14 +17,14 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _homeScreenEntry(
-              label: const Text("QUIZ"),
+              label: const Text("quiz").tr(),
               iconData: Icons.quiz,
               onPressed: () => AutoRouter.of(context).push(
                 const QuizRoute(),
               ),
             ),
             _homeScreenEntry(
-              label: const Text("TRIVIA"),
+              label: const Text("trivia").tr(),
               iconData: Icons.fact_check,
               onPressed: () => AutoRouter.of(context).push(
                 const TriviaRoute(),

@@ -10,7 +10,7 @@ class AnimalTriviaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'appTitle'.tr(),
+      onGenerateTitle: (context) => 'appTitle'.tr(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

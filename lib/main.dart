@@ -7,19 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
-  BlocOverrides.runZoned(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
-      await EasyLocalization.ensureInitialized();
-      configureDependencies();
-      EasyLocalization(
-        supportedLocales: const [Locale('en'), Locale('de')],
-        path: 'assets/translations',
-        fallbackLocale: const Locale('en', 'US'),
-        child: AnimalTriviaApp(),
-      );
-    },
-    blocObserver: MyBlocObserver(),
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  configureDependencies();
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('de')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en', 'US'),
+      child: AnimalTriviaApp(),
+    ),
   );
 }
 

@@ -13,7 +13,9 @@
     "weight": "Gewicht",
     "lifespan": "Lebenserwartung",
     "years": "Jahre",
-    "quiz_app_bar_title": "Errate das Tier!",
-    "correct_answer": "Richtige Antwort! Es ist ein {animalName}.",
-    "wrong_answer": "Falsche Antwort! Es ist ein {animalName}."
+    "quizAppBarTitle": "Errate das Tier!",
+    "correctAnswer": "Richtige Antwort! Es ist ein {animalName}.",
+    "wrongAnswer": "Falsche Antwort! Es ist ein {animalName}.",
+    "quiz": "Quiz",
+    "trivia": "Fakten"
 }
