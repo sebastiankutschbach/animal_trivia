@@ -65,8 +65,16 @@ class _QuizPageState extends State<QuizPage> {
                 ),
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: CachedNetworkImage(
-                    imageUrl: animals[index].imageLink.toString(),
+                  child: Column(
+                    children: [
+                      Text(
+                        animals[index].name,
+                      ),
+                      CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: animals[index].imageLink.toString(),
+                      ),
+                    ],
                   ),
                 ),
                 itemCount: animals.length,
@@ -105,8 +113,10 @@ class _QuizPageState extends State<QuizPage> {
                       Icons.check,
                       color: Colors.green,
                     ),
-                    const Text('correctAnswer').tr(
-                        namedArgs: {'animalName': state.correctAnimal.name}),
+                    const Text(
+                      'correctAnswer',
+                      maxLines: 3,
+                    ).tr(namedArgs: {'animalName': state.correctAnimal.name}),
                   ],
                 )
               : Row(children: [
@@ -114,8 +124,10 @@ class _QuizPageState extends State<QuizPage> {
                     Icons.dangerous,
                     color: Colors.red,
                   ),
-                  const Text('wrongAnswer')
-                      .tr(namedArgs: {'animalName': state.correctAnimal.name}),
+                  const Text(
+                    'wrongAnswer',
+                    maxLines: 3,
+                  ).tr(namedArgs: {'animalName': state.correctAnimal.name}),
                 ]),
         ),
       );

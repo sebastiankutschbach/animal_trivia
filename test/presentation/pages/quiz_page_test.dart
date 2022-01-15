@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:animal_trivia/application/quiz_page/quiz_page_bloc.dart';
 import 'package:animal_trivia/domain/animal.dart';
 import 'package:animal_trivia/domain/failure.dart';
