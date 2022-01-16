@@ -51,6 +51,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget _successState(BuildContext context, List<Animal> animals) => Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: const Text('quizAppBarTitle').tr(),
         ),
@@ -67,12 +68,18 @@ class _QuizPageState extends State<QuizPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      Text(
-                        animals[index].name,
+                      Expanded(
+                        flex: 8,
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl: animals[index].imageLink.toString(),
+                        ),
                       ),
-                      CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: animals[index].imageLink.toString(),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          animals[index].name,
+                        ),
                       ),
                     ],
                   ),
