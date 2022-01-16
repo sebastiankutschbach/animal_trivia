@@ -106,6 +106,9 @@ class _QuizPageState extends State<QuizPage> {
   _showSnackBar(QuizPageAnimalSelected state) =>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          key: state.result
+              ? const Key('correctAnswerSnackBar')
+              : const Key('wrongAnswerSnackBar'),
           content: state.result
               ? Row(
                   children: [

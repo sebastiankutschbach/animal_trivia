@@ -7,6 +7,7 @@ import 'package:animal_trivia/presentation/pages/quiz_page.dart';
 import 'package:animal_trivia/presentation/widgets/animal_detail_widget.dart';
 import 'package:animal_trivia/presentation/widgets/error_scaffold.dart';
 import 'package:animal_trivia/presentation/widgets/loading_scaffold.dart';
+import 'package:bloc_test/bloc_test.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,6 +19,7 @@ import '../../mocks.dart';
 import '../../sample_responses.dart';
 
 main() async {
+  late QuizPageBloc quizPageBloc;
   final List<Animal> defaultAnimals = List<Animal>.from(
     sampleAnimalBatchResponse.map(
       (animalResponse) => AnimalDto.fromJson(sampleAnimalResponse1).toDomain(),
@@ -27,10 +29,19 @@ main() async {
   await EasyLocalization.ensureInitialized();
 
   Future<Widget> _createApp(
-      {Failure? failure, List<Animal> animals = const []}) async {
-    final quizPageBloc = MockQuizPageBloc();
+      {Failure? failure,
+      List<Animal> animals = const [],
+      int? animalGuessIndex}) async {
+    quizPageBloc = MockQuizPageBloc();
 
     when(() => quizPageBloc.animalToGuessIndex).thenReturn(0);
+
+    whenListen(
+      quizPageBloc,
+      Stream.fromIterable(
+        [QuizPageAnimalSelected(animalGuessIndex == 0, defaultAnimals.first)],
+      ),
+    );
 
     if (failure != null) {
       when(() => quizPageBloc.state).thenAnswer((_) => QuizPageError(failure));
@@ -94,46 +105,38 @@ main() async {
       });
     });
 
-    // testWidgets(
-    //     'shows snackbar (containing correct) when correct animal was selected',
-    //     (WidgetTester tester) async {
-    //   await mockNetworkImages(() async {
-    //     await tester.pumpWidget(
-    //       await _createApp(animals: defaultAnimals),
-    //     );
+    testWidgets(
+        'shows snackbar (containing correct) when correct animal was selected',
+        (WidgetTester tester) async {
+      await mockNetworkImages(() async {
+        await tester.pumpWidget(
+          await _createApp(animalGuessIndex: 0),
+        );
+        await tester.pump();
 
-    //     await tester.tap(find.byType(FloatingActionButton));
-    //     await tester.pumpAndSettle();
+        expect(
+            find.byKey(
+              const Key('correctAnswerSnackBar'),
+            ),
+            findsOneWidget);
+      });
+    });
 
-    //     final snackBarFinder = find.byType(SnackBar);
-    //     expect(snackBarFinder, findsOneWidget);
-    //     expect(
-    //         find.descendant(
-    //             of: snackBarFinder,
-    //             matching: find.textContaining('Correct Answer!')),
-    //         findsOneWidget);
-    //   });
-    // });
+    testWidgets(
+        'shows snackbar (containing correct) when correct animal was selected',
+        (WidgetTester tester) async {
+      await mockNetworkImages(() async {
+        await tester.pumpWidget(
+          await _createApp(animalGuessIndex: 1),
+        );
+        await tester.pump();
 
-    // testWidgets(
-    //     'shows snackbar (containing correct) when correct animal was selected',
-    //     (WidgetTester tester) async {
-    //   await mockNetworkImages(() async {
-    //     await tester.pumpWidget(
-    //       await _createApp(animals: defaultAnimals),
-    //     );
-
-    //     await tester.tap(find.byType(FloatingActionButton));
-    //     await tester.pumpAndSettle();
-
-    //     final snackBarFinder = find.byType(SnackBar);
-    //     expect(snackBarFinder, findsOneWidget);
-    //     expect(
-    //         find.descendant(
-    //             of: snackBarFinder,
-    //             matching: find.textContaining('Correct Answer!')),
-    //         findsOneWidget);
-    //   });
-    // });
+        expect(
+            find.byKey(
+              const Key('wrongAnswerSnackBar'),
+            ),
+            findsOneWidget);
+      });
+    });
   });
 }
